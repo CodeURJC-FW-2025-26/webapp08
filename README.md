@@ -7,9 +7,12 @@ Básicamente, en la página principal o de inicio, aparecerá el nombre del rest
 
 Desarrollado por:
 
--Zhiyang Ni | z.ni.2024@alumnos.urjc.es | Yxng22 
--Iñigo Pérez Martínez | i.perezma.2024@alumnos.urjc.es | inigoPz 
--Miguel Ángel Abián Arienza | ma.abian.2024@alumnos.urjc.es | zeta-16 
+-Zhiyang Ni | z.ni.2024@alumnos.urjc.es | Yxng22
+
+-Iñigo Pérez Martínez | i.perezma.2024@alumnos.urjc.es | inigoPz
+
+-Miguel Ángel Abián Arienza | ma.abian.2024@alumnos.urjc.es | zeta-16
+
 -Ahmed Ehab | a.ehab.2024@alumnos.urjc.es | ahmed234fgtv 
 
 Funcionalidad: 
