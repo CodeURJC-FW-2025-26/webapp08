@@ -1,5 +1,5 @@
 # Menú de un restaurante
-# Restaurante ZenTao Buffet.
+# Restaurante ZenTao Buffet
 
 Vamos a diseñar una aplicación web para la gestión y visualización de la carta de un restaurante. El usuario podrá consultar toda la información sobre el restaurante, todos los tipos de menús, la carta completa y navegar de forma intuitiva entre las distintas secciones de la web. 
 
