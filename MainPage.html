@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenTao Buffet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#plates-grid">Platos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact-card">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+     <div class="hero-img">
+        <div class="hero-overlay"></div>
+        <div class="hero-text">ZenTao Buffet</div>
+        <img src="assets_task_01k71v35kefkh9tzb07k4pr14h_1759924941_img_1.webp" alt="ZenTao Buffet" class="img-fluid w-100">
+    </div>
+    <div class="container mt-4">
+        <div class="search-filter-bar mb-4">
+            <form>
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4">
+                        <label for="searchName" class="form-label">Buscar por nombre</label>
+                        <input type="text" class="form-control" id="searchName" placeholder="Ej: Sushi, Pollo...">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="searchIngredients" class="form-label">Filtrar por ingrediente</label>
+                        <select class="form-select" id="searchIngredients">
+                            <option selected>Todos</option>
+                            <option>Arroz</option>
+                            <option>Pollo</option>
+                            <option>Pescado</option>
+                            <option>Verduras</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="searchType" class="form-label">Categoría</label>
+                        <select class="form-select" id="searchType">
+                            <option selected>Todos</option>
+                            <option>Entrantes</option>
+                            <option>Carnes</option>
+                            <option>Pescados</option>
+                            <option>Sushi</option>
+                            <option>Postres</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-end mt-3">
+                    <button type="submit" class="btn btn-create" disabled>Buscar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="text-end mb-3">
+            <a href="platos/platos.html" class="btn btn-create">Crear nuevo elemento</a>
+        </div>
+
+        <div id="plates-grid" class="plates-grid row">
+            <div class="col mb-4">
+                <a href="detalle.html" class="text-decoration-none">
+                    <div class="plate-card">
+                        <img src="Captura de pantalla 2025-10-08 202201.png" alt="Nigiri de Salmón flambeado">
+                        <div class="plate-card-body">
+                            <div class="plate-type">Sushi</div>
+                            <h5 class="plate-title">Nigiri de Salmón flambeado</h5>
+                            <div class="plate-price">11,95 €</div>
+                            <p class="plate-description">Increíble nigiri de salmón fresco, ligeramente flameado y servido con salsa de soja.</p>
+                            <div class="plate-duration">Preparación: 15 min</div>
+                            <div class="plate-allergen">Alérgenos: Gluten, Pescado, Soja, Sésamo</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col mb-4">
+                <a href="detalle.html" class="text-decoration-none">
+                    <div class="plate-card">
+                        <img src="crispy.jpg" alt="Tempura Uramaki">
+                        <div class="plate-card-body">
+                            <div class="plate-type">Sushi</div>
+                            <h5 class="plate-title">Tempura Uramaki</h5>
+                            <div class="plate-price">14,75 €</div>
+                            <p class="plate-description">Deliciosos rollos de sushi fritos, rellenos de pescado y verduras.</p>
+                            <div class="plate-duration">Preparación: 18 min</div>
+                            <div class="plate-allergen">Alérgenos: Gluten, Crustáceos, Sésamo, Sulfitos, Huevos</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col mb-4">
+                <a href="detalle.html" class="text-decoration-none">
+                    <div class="plate-card">
+                        <img src="rollito-de-primavera.webp" alt="Rollito de Primavera">
+                        <div class="plate-card-body">
+                            <div class="plate-type">Entrante</div>
+                            <h5 class="plate-title">Rollitos de Primavera (2 unidades)</h5>
+                            <div class="plate-price">8,50 €</div>
+                            <p class="plate-description">Crujiente rollito relleno de verduras frescas y carne, acompañado de salsa agridulce.</p>
+                            <div class="plate-duration">Preparación: 15 min</div>
+                            <div class="plate-allergen">Alérgenos: Gluten, Soja</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col mb-4">
+                <a href="detalle.html" class="text-decoration-none">
+                    <div class="plate-card">
+                        <img src="Crab-Rangoon_ExtraLarge700_ID-1620552.jpg" alt="Crab Rangoon al estilo ZenTao">
+                        <div class="plate-card-body">
+                            <div class="plate-type">Entrante</div>
+                            <h5 class="plate-title">Crab Rangoon al estilo ZenTao</h5>
+                            <div class="plate-price">16,85 €</div>
+                            <p class="plate-description">Deliciosos wontons rellenos de carne de cangrejo y queso crema, fritos hasta dorarse.</p>
+                            <div class="plate-duration">Preparación: 20 min</div>
+                            <div class="plate-allergen">Alérgenos: Crustáceos, Gluten, Lácteos</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+        <!-- NUEVA SECCIÓN DE CONTACTO -->
+        <div class="row justify-content-center mt-5">
+          <div class="col-12 col-md-11 col-lg-10">
+            <div id="contact-card" class="contact-card">
+              <h3 class="contact-title">Contáctanos</h3>
+              <p class="contact-info">
+                📍 Calle Sakura 123, Madrid, España<br>
+                ☎️ Teléfono: +34 654 321 987<br>
+                ✉️ Email: contacto@zentao.com
+              </p>
+              <form class="contact-form">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Tu nombre</label>
+                  <input type="text" id="name" class="form-control" placeholder="Escribe tu nombre">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Tu correo</label>
+                  <input type="email" id="email" class="form-control" placeholder="ejemplo@email.com">
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Mensaje</label>
+                  <textarea id="message" class="form-control" rows="4" placeholder="Tu mensaje..."></textarea>
+                </div>
+                <div class="text-end">
+                  <button type="submit" class="btn btn-create">Enviar mensaje</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- FIN DE LA SECCIÓN DE CONTACTO -->
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 ZenTao Buffet. Todos los derechos reservados.</p>
+    </footer>
