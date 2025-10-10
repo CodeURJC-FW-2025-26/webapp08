@@ -22,7 +22,7 @@ body {
 
 /* Header styles */
 .header {
-    background: linear-gradient(90deg, #8b0000 0%, #ff9800 100%);
+    background: linear-gradient(90deg,  #ffe48d 0%, #ffe0b2 100%);
     color: white;
     padding: 2rem 0 1rem 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -36,21 +36,21 @@ body {
 }
 
 .header .nav-link {
-    color: rgb(255, 255, 255) !important;
+    color: rgb(247 83 83) !important;
     font-weight: 500;
     margin-right: 1rem;
     transition: color 0.2s;
 }
 
 .header .nav-link:hover {
-    color: #b00000 !important;
+    color: #7c0000 !important;
 }
 
 /* Search and filter bar */
 .search-filter-bar {
     background: #fff3e0;
     border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 10px rgb(161 155 155);
     padding: 1.5rem;
     margin-bottom: 2rem;
 }
@@ -68,8 +68,8 @@ body {
 
 /* Create button */
 .btn-create {
-    background: #0116f4;
-    color: white;
+    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; /* fondo deseado */
+    color: rgb(247 83 83);
     font-weight: 600;
     border-radius: 2rem;
     border: none;
@@ -80,7 +80,7 @@ body {
 
 .btn-create:hover {
     background: linear-gradient(90deg, #091deb 0%, #d32f2f 100%);
-    color: #fff3e0;
+    color: #7c0000;
 }
 
 /* Plates grid */
@@ -89,7 +89,7 @@ body {
 }
 
 .plate-card {
-    background: #fff;
+    background: #ffffff;
     border-radius: 1.2rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.07);
     overflow: hidden;
@@ -172,8 +172,8 @@ body {
 
 /* Footer styles */
 .footer {
-    background: linear-gradient(90deg, #a40404 0%, #0116f4 100%);
-    color: white;
+    background: linear-gradient(90deg,  #ffe48d 0%, #ffe0b2 100%);
+    color: rgb(247 83 83) !important;
     padding: 1.2rem 0;
     text-align: center;
     font-size: 1rem;
@@ -310,3 +310,14 @@ body::-webkit-scrollbar-thumb {
         font-size: 1.5rem;
     }
 }
+
+/* Forzar estilos cuando el botón está deshabilitado */
+.btn-create:disabled,
+.btn-create[disabled] {
+    opacity: 1 !important;                /* sobreescribe la opacidad de bootstrap */
+    pointer-events: none;                 /* sigue sin ser clicable */
+    color: #212121 !important;            /* color del texto que quieras */
+    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; /* fondo deseado */
+    box-shadow: 0 2px 8px rgba(211,47,47,0.08) !important;
+}
+
