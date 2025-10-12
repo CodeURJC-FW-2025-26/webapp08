@@ -66,6 +66,7 @@
                                 <div class="plate-card text-center p-2">
                                     <img src="https://www.cocinista.es/download/bancorecursos/recetas/receta-tempura-extra-crujiente.jpg" alt="Gambas en tempura" class="ingredient-img">
                                     <div class="ingredient-name mt-2">Gambas en tempura</div>
+                                    <div class="ingredient-desc">Su textura cremosa equilibra la fritura del tempura y añade un sabor suave y fresco.</div>
                                     <div class="mt-2">
                                         <button class="btn btn-create btn-sm me-1">Editar</button>
                                         <button class="btn btn-create btn-sm">Borrar</button>
@@ -77,6 +78,7 @@
                                 <div class="plate-card text-center p-2">
                                     <img src="https://www.frotzfruits.com/wp-content/uploads/2025/06/venta-aguacate-mitades-congelado-iqf-frotz-fruits.jpg" alt="Aguacate" class="ingredient-img">
                                     <div class="ingredient-name mt-2">Aguacate</div>
+                                    <div class="ingredient-desc">Su textura cremosa equilibra la fritura del tempura y añade un sabor suave y fresco.</div>
                                     <div class="mt-2">
                                         <button class="btn btn-create btn-sm me-1">Editar</button>
                                         <button class="btn btn-create btn-sm">Borrar</button>
@@ -88,6 +90,7 @@
                                 <div class="plate-card text-center p-2">
                                     <img src="https://www.sushi.com.es/imagenes/arroz-para-sushi.jpg" alt="Arroz de sushi" class="ingredient-img">
                                     <div class="ingredient-name mt-2">Arroz de sushi</div>
+                                    <div class="ingredient-desc">Sazonado con vinagre, azúcar y sal, mantiene la forma del rollo y aporta el toque tradicional japonés.</div>
                                     <div class="mt-2">
                                         <button class="btn btn-create btn-sm me-1">Editar</button>
                                         <button class="btn btn-create btn-sm">Borrar</button>
@@ -99,6 +102,7 @@
                                 <div class="plate-card text-center p-2">
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBtGA2lfzL-mE3a5q-y6OsbN6Tjfui8dCm4A&s" alt="Alga nori" class="ingredient-img">
                                     <div class="ingredient-name mt-2">Alga nori</div>
+                                    <div class="ingredient-desc">Envoltorio del uramaki que aporta un sabor umami y mantiene la estructura del roll.</div>
                                     <div class="mt-2">
                                         <button class="btn btn-create btn-sm me-1">Editar</button>
                                         <button class="btn btn-create btn-sm">Borrar</button>
