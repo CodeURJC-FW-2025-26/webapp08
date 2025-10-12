@@ -14,14 +14,11 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#plates-grid">Platos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#contact-card">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="MainPage.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="MainPage.html#plates-grid">Platos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="MainPage.html#contact-card">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,6 +45,7 @@
                                 <div class="plate-type">Sushi</div>
                                 <h3 class="plate-title">Tempura Uramaki</h3>
                                 <div class="plate-price">14,75 €</div>
+                                <div class="plate-date">Fecha de incorporación: enero 2025</div>
                                 <p class="plate-description">
                                     Deliciosos rollos de sushi fritos en tempura, rellenos de pescado fresco y verduras crujientes.
                                     Una combinación perfecta entre el sabor del mar y la textura crujiente del rebozado japonés.
@@ -62,14 +60,52 @@
 
                     <section class="mt-3">
                         <h4 class="text-zen mb-3">Ingredientes principales</h4>
-                        <ul class="list-unstyled ms-3">
-                            <li>Gambas en tempura</li>
-                            <li>Aguacate</li>
-                            <li>Arroz de sushi</li>
-                            <li>Alga nori</li>
-                            <li>Semillas de sésamo</li>
-                            <li>Salsa de soja</li>
-                        </ul>
+                        <div class="row g-3">
+                            <!-- Ingrediente 1 -->
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="plate-card text-center p-2">
+                                    <img src="https://www.cocinista.es/download/bancorecursos/recetas/receta-tempura-extra-crujiente.jpg" alt="Gambas en tempura" class="ingredient-img">
+                                    <div class="ingredient-name mt-2">Gambas en tempura</div>
+                                    <div class="mt-2">
+                                        <button class="btn btn-create btn-sm me-1">Editar</button>
+                                        <button class="btn btn-create btn-sm">Borrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Ingrediente 2 -->
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="plate-card text-center p-2">
+                                    <img src="https://www.frotzfruits.com/wp-content/uploads/2025/06/venta-aguacate-mitades-congelado-iqf-frotz-fruits.jpg" alt="Aguacate" class="ingredient-img">
+                                    <div class="ingredient-name mt-2">Aguacate</div>
+                                    <div class="mt-2">
+                                        <button class="btn btn-create btn-sm me-1">Editar</button>
+                                        <button class="btn btn-create btn-sm">Borrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Ingrediente 3 -->
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="plate-card text-center p-2">
+                                    <img src="https://www.sushi.com.es/imagenes/arroz-para-sushi.jpg" alt="Arroz de sushi" class="ingredient-img">
+                                    <div class="ingredient-name mt-2">Arroz de sushi</div>
+                                    <div class="mt-2">
+                                        <button class="btn btn-create btn-sm me-1">Editar</button>
+                                        <button class="btn btn-create btn-sm">Borrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Ingrediente 4 -->
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="plate-card text-center p-2">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBtGA2lfzL-mE3a5q-y6OsbN6Tjfui8dCm4A&s" alt="Alga nori" class="ingredient-img">
+                                    <div class="ingredient-name mt-2">Alga nori</div>
+                                    <div class="mt-2">
+                                        <button class="btn btn-create btn-sm me-1">Editar</button>
+                                        <button class="btn btn-create btn-sm">Borrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <section class="mt-4">
@@ -90,10 +126,30 @@
                         </table>
                     </section>
 
-                    <div class="text-center mt-4">
+                    <hr class="my-4">
+
+                    <!-- Formulario para añadir un nuevo ingrediente -->
+                    <section class="mt-4">
+                        <h4 class="text-zen mb-3">Añadir nuevo ingrediente</h4>
+                        <form>
+                            <div class="mb-3">
+                                <label for="ingredientName" class="form-label">Nombre del ingrediente</label>
+                                <input type="text" id="ingredientName" class="form-control" placeholder="Ej: Queso crema" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ingredientImage" class="form-label">Imagen del ingrediente (URL)</label>
+                                <input type="url" id="ingredientImage" class="form-control" placeholder="https://..." required>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-create">Crear</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <div class="text-center mt-5">
                         <button class="btn btn-create me-2" type="button">Editar</button>
                         <button class="btn btn-create me-2" type="button">Borrar</button>
-                        <a href="index.html" class="btn btn-create">Volver a página principal</a>
+                        <a href="MainPage.html" class="btn btn-create">Volver a página principal</a>
                     </div>
                 </div>
             </div>
@@ -103,7 +159,5 @@
     <footer class="footer">
         <p>&copy; 2025 ZenTao Buffet. Todos los derechos reservados.</p>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
