@@ -90,7 +90,7 @@
                                 <div class="plate-card text-center p-2">
                                     <img src="https://www.sushi.com.es/imagenes/arroz-para-sushi.jpg" alt="Arroz de sushi" class="ingredient-img">
                                     <div class="ingredient-name mt-2">Arroz de sushi</div>
-                                    <div class="ingredient-desc">Sazonado con vinagre, azúcar y sal, mantiene la forma del rollo y aporta el toque tradicional japonés.</div>
+                                    <div class="ingredient-desc">Sazonado con vinagre, azúcar y sal, aporta el toque tradicional japonés.</div>
                                     <div class="mt-2">
                                         <button class="btn btn-create btn-sm me-1">Editar</button>
                                         <button class="btn btn-create btn-sm">Borrar</button>
