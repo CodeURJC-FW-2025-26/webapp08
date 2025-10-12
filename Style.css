@@ -233,7 +233,7 @@ body::-webkit-scrollbar-thumb {
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.45); /* Ajusta el nivel de oscuridad aquí */
+    background: rgba(0,0,0,0.45); 
     z-index: 1;
 }
 
@@ -311,13 +311,13 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
-/* Forzar estilos cuando el botón está deshabilitado */
+/* Forzar estilo cuando el botón está deshabilitado */
 .btn-create:disabled,
 .btn-create[disabled] {
     opacity: 1 !important;                /* sobreescribe la opacidad de bootstrap */
     pointer-events: none;                 /* sigue sin ser clicable */
-    color: #212121 !important;            /* color del texto que quieras */
-    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; /* fondo deseado */
+    color: #212121 !important;           
+    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; 
     box-shadow: 0 2px 8px rgba(211,47,47,0.08) !important;
 }
 
