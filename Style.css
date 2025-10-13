@@ -22,10 +22,15 @@ body {
 
 /* Header styles */
 .header {
-    background: linear-gradient(90deg,  #ffe48d 0%, #ffe0b2 100%);
+    background: linear-gradient(90deg,  #eec556 0%, #f9eb9f 100%);
     color: white;
     padding: 0.5rem 0 0.5rem 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
 }
 
 .header .navbar-brand {
@@ -36,14 +41,32 @@ body {
 }
 
 .header .nav-link {
+    position: relative;
     color: rgb(247 83 83) !important;
     font-weight: 500;
     margin-right: 1rem;
-    transition: color 0.2s;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.header .nav-link::after{
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #d32f2f;
+    transition: width 0.3s ease;
 }
 
 .header .nav-link:hover {
     color: #7c0000 !important;
+}
+
+.header .nav-link:hover::after {
+    width: 100%;
 }
 
 /* Search and filter bar */
@@ -68,7 +91,7 @@ body {
 
 /* Create button */
 .btn-create {
-    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; /* fondo deseado */
+    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; 
     color: rgb(247 83 83);
     font-weight: 600;
     border-radius: 2rem;
@@ -187,7 +210,7 @@ body {
 
 /* Footer styles */
 .footer {
-    background: linear-gradient(90deg,  #ffe48d 0%, #ffe0b2 100%);
+    background: linear-gradient(90deg,  #eec556 0%, #f9eb9f 100%);
     color: rgb(247 83 83) !important;
     padding: 1.2rem 0;
     text-align: center;
@@ -226,7 +249,7 @@ body::-webkit-scrollbar-thumb {
     background: #d32f2f;
     border-radius: 8px;
 }
-/* Hero image debajo de la cabecera */
+
 .hero-img {
     position: relative;
     width: 100%;
@@ -248,7 +271,7 @@ body::-webkit-scrollbar-thumb {
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.45); /* Ajusta el nivel de oscuridad aquí */
+    background: rgba(0,0,0,0.45); 
     z-index: 1;
 }
 
@@ -284,8 +307,8 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid #ffe0b2;
     padding: 2rem;
     margin: 3rem auto;
-    max-width: 900px; /* más ancha que las tarjetas de platos */
-    width: 90%;       /* ocupa la mayor parte del ancho en pantallas pequeñas */
+    max-width: 900px;
+    width: 90%;       
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -326,14 +349,19 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
-/* Forzar estilos cuando el botón está deshabilitado */
+
 .btn-create:disabled,
 .btn-create[disabled] {
-    opacity: 1 !important;                /* sobreescribe la opacidad de bootstrap */
-    pointer-events: none;                 /* sigue sin ser clicable */
-    color: rgb(247 83 83) !important;            /* color del texto que quieras */
-    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; /* fondo deseado */
+    opacity: 1 !important;             
+    pointer-events: none;                
+    color: rgb(247 83 83) !important;            
+    background: linear-gradient(90deg, #fbc02d 0%, #ffffff 100%) !important; 
     box-shadow: 0 2px 8px rgba(211,47,47,0.08) !important;
     padding: 0.6rem 1.6rem;
 }
 
+
+html, body {
+  overflow-x: hidden; 
+  overflow-y: auto;  
+}
