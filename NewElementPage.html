@@ -38,32 +38,99 @@
                 <div id="contact-card" class="contact-card">
                   <h1 class="contact-title">Añadir plato</h1>
                     <form class="newplate-form contact-form">
-                      <div class="mb-3">
-                        <label for="plate-type" class="form-label">Tipo de plato:</label>
-                        <input type="text" id="plate-type" class="form-control" placeholder="Introduzca el tipo de plato">
+                      <div class="col-mb-3">
+                        <label for="plate-title" class="form-label"><strong>Tipo de plato:</strong></label>
+                          <select class="form-select" id="searchType">
+                              <option selected>Elegir</option>
+                              <option>Entrante</option>
+                              <option>Principal</option>
+                              <option>Sushi</option>
+                              <option>Postres</option>
+                              <option>Bebida</option>
+                          </select>
                       </div>
                       <div class="mb-3">
-                        <label for="plate-tittle" class="form-label">Nombre:</label>
+                        <label for="plate-title" class="form-label"><strong>Nombre:</strong></label>
                         <input type="text" id="plate-tittle" class="form-control" placeholder="Introduzca el nombre del plato">
                       </div>
                       <div class="mb-3">
-                        <label for="plate-price" class="form-label">Precio:</label>
-                        <input type="text" id="plate-price" class="form-control" placeholder="Introduzca el precio del plato">
+                        <label for="plate-price" class="form-label"><strong>Precio (euros):</strong></label>
+                        <input type="number" step="any" min="0" id="plate-price" class="form-control" placeholder="Introduzca el precio del plato">
                       </div>
                       <div class="mb-3">
-                        <label for="plate-description" class="form-label">Ingredientes:</label>
-                        <textarea id="plate-tittle" class="form-control" rows="3" placeholder="Introduzca una descripción del plato"></textarea>
+                        <label for="plate-duration" class="form-label"><strong>Tiempo de preparación (minutos):</strong></label>
+                        <input type="number" step="any" min="0" id="plate-duration" class="form-control" placeholder="Introduzca el tiempo de preparación del plato">
                       </div>
-                      <div class="mb-3">
-                        <label for="plate-duration" class="form-label">Preparación:</label>
-                        <input type="text" id="plate-duration" class="form-control" placeholder="Introduzca el tiempo de preparación del plato">
-                      </div>
-                      <div class="mb-3">
-                        <label for="plate-allergen" class="form-label">Alérgenos:</label>
-                        <input type="text" id="plate-allergen" class="form-control" placeholder="Introduzca los alérgenos del plato">
+                      <div class="col-mb-3">
+                        <label for="plate-title" class="form-label"><strong>Alérgenos:</strong></label>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen1" value="Gluten">
+                              <label for="allergen1">Gluten</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen2" value="Crustáceos">
+                              <label for="allergen2">Crustáceos</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen3" value="Huevos">
+                              <label for="allergen3">Huevos</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen4" value="Pescado">
+                              <label for="allergen4">Pescado</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen5" value="Cacahuetes">
+                              <label for="allergen5">Cacahuetes</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen6" value="Soja">
+                              <label for="allergen6">Soja</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen7" value="Lácteos">
+                              <label for="allergen7">Lácteos</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen8" value="Frutos de cáscara">
+                              <label for="allergen8">Frutos de cáscara</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen9" value="Nueces">
+                              <label for="allergen9">Nueces</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen10" value="Apio">
+                              <label for="allergen10">Apio</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen11" value="Mostaza">
+                              <label for="allergen11">Mostaza</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen12" value="Sésamo">
+                              <label for="allergen12">Sésamo</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen13" value="Dióxido de azufre y sulfitos">
+                              <label for="allergen13">Dióxido de azufre y sulfitos</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen14" value="Altramuces">
+                              <label for="allergen14">Altramuces</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen15" value="Moluscos">
+                              <label for="allergen15">Moluscos</label>
+                          </div>
+                          <div class="form-checkbox">
+                              <input type="checkbox" id="allergen16" value="Aguacate">
+                              <label for="allergen16">Aguacate</label>
+                          </div>
+                          </select>
                       </div>
                        <div class="mb-3">
-                        <label for="plate-image" class="form-label">Imagen del plato:</label>
+                        <label for="plate-image" class="form-label"><strong>Imagen del plato:</strong></label>
                         <input type="file" id="plate-image" class="form-control">
                       </div>
 
@@ -82,6 +149,3 @@
     </footer>
 </body>
 </html>
-
-
-
