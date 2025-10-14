@@ -93,4 +93,18 @@ https://github.com/CodeURJC-FW-2025-26/webapp08/commit/827d576969bf79d6c17ea74da
 - NewElementPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/NewElementPage.html
 - DetailPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/DetailPage.html
 
-### Participación de
+### Participación de Íñigo Pérez
+**Tareas realizadas:**
+Durante esta práctica, me encargué del desarrollo completo de la página de detalle, la cual muestra la información específica de uno de los platos. Implementé la estructura HTML integrando componentes como la sección principal con la imagen y descripción del plato, y desarrollé todo el apartado de los ingredientes, incluyendo las imágenes, nombres, descripciones y los botones de edición y borrado. También creé el formulario para añadir nuevos ingredientes, y junto con Ahmed corregí posteriormente su funcionamiento para que permitiera adjuntar imágenes desde el ordenador en lugar de requerir un enlace externo. Además, me aseguré de mantener la coherencia visual con el resto del sitio mediante el uso de Bootstrap y clases personalizadas definidas en el archivo Style.css. También participé activamente en las discusiones del equipo sobre el apartado estético del proyecto, proponiendo ajustes visuales y la incorporación de nuevas especificaciones en el archivo de estilos para mejorar la presentación y coherencia de la página de detalle.
+
+**Commits más significativos:**
+- 
+-
+-
+-
+
+**Ficheros en los que más he participado:**
+- DetailPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/DetailPage.html
+- Images https://github.com/CodeURJC-FW-2025-26/webapp08/tree/main/images
+- Style.css https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Style.css
+
