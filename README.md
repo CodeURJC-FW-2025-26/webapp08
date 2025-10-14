@@ -99,7 +99,7 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
 
 **Commits más significativos:**
 - Primera versión de la página sin los botones de editar o borrar ingredientes y sin el formulario para añadir ingredientes. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/9742435941f4ebe6d48550856329bbcb8f1962fa
-- Segunda versión pasando de tener una ul de ingredientes a tarjetas visuales de cada ingrediente con nombre, imagen y los botones de editar y borrar.
+- Pasamos de tener una ul de ingredientes a tarjetas visuales de cada ingrediente con nombre, imagen y los botones de editar y borrar.
   También añadí la primera versión del formulario de añadir ingrediente (nombre, url imagen y boton crear). https://github.com/CodeURJC-FW-2025-26/webapp08/commit/e46b18d737c054164bef2533d3e0abae4d003ad6
 - Se añaden descripciones a cada ingrediente y se corrigen fallos pequeños generales. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/f6ac5af86a22cd55be8758113452a43f5372adc1
 - Se modificó el formulario para que permita subir una imagen desde el ordenador en lugar de requerir una URL, mejorando la usabilidad. Además, se incorporó la clase plate-card-detail para diferenciar la maquetación de la   página de detalle y aplicar estilos específicos que mejoran su presentación y coherencia visual.  https://github.com/CodeURJC-FW-2025-26/webapp08/commit/868efa8d41fe5308814d2bb4593f348b67cae635
