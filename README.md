@@ -23,17 +23,16 @@
   - `Type`
   - `Price`
   - `Image`
-  - `Ingredients`
-  - `Duration`
-  - `Allergen`
+  - `Preparation time`
+  - `Allergens`
 
 #### Secondary enitity
 #### - Entity name: Ingredients
 #### - Atributes:
   - `Name`
   - `Type`
+  - `Description`
   - `Image`
-  - `Vegan/Vegetarian option`
   
 ### Images
 #### - Main entity: Each plate will have a picture associated
