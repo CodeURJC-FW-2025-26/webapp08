@@ -143,9 +143,9 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
 - Creación de la primera version de la pagina de nuevo elemento (la versión final la ha subido Ahmed) https://github.com/CodeURJC-FW-2025-26/webapp08/commits/main/NewElementPage.html
 
 **Ficheros en los que más he participado:**
-- README.md
+1. README.md
   https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
-- NewElementPage.html 
+2. NewElementPage.html 
   https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/NewElementPage.html
 
 
