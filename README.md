@@ -30,7 +30,6 @@
 #### - Entity name: Ingredients
 #### - Atributes:
   - `Name`
-  - `Type`
   - `Description`
   - `Image`
   
