@@ -133,10 +133,10 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
 
 ### Participación de Miguel Ángel Abián Arienza
 **Tareas realizadas:**
-- Redacción del archivo README del proyecto
+- Redacción del archivo README del proyecto.
 - Maquetación general de la pagina de crear nuevo elemento.
-- Elaboracion del formulario para añadir un nuevo elemento.
-- Revisión de algunas partes del codigo y colaboracion en las discusiones sobre el estilo de la pagina
+- Elaboración del formulario para añadir un nuevo elemento.
+- Revisión de algunas partes del código y colaboración en las discusiones sobre el estilo de la página.
 
 **Commits más significativos:**
 - Redacción del archivo READ.md https://github.com/CodeURJC-FW-2025-26/webapp08/commit/85b7a1175b899b2f6b121c3373f45d8d2e203f99
