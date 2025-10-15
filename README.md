@@ -49,6 +49,25 @@
 <br>
 
 ## Práctica 1 — Maquetación de páginas web (HTML y CSS)
+### Capturas página principal:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/8ddda917-aefb-4f25-9fbf-284580d61904" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/cdce418d-225e-445f-be45-9ee98e91cef8" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/57a89895-5ccb-46d8-89a1-ddfe5a620881" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ccc4c689-5481-4abf-bdc9-4bebb0cddecf" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/63b61538-e6b3-4c2a-8b3d-8cb594ae739d" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/2263af75-a77a-4cd7-ad1b-0841e1b48b88" />
+
+### Capturas página de detalle:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/9b4008d3-09d3-414c-9e14-603e741679ef" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/d42c4fab-78fc-405a-92b4-ea0b8047fdcf" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c71098a3-c606-47ae-acc8-733b141eee9b" />
+
+### Capturas página de nuevo elemento:
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/523784c4-13fd-4905-a246-a41a840e6a50" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ed8a9cdb-57ba-4c0b-ae89-a8f1a759ffbb" />
+
+
+
 ### Participación de Zhiyang Ni
 **Tareas realizadas:**
 - Redacción del archivo README del proyecto.
@@ -119,9 +138,10 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
 - Maquetación general de la pagina de crear nuevo elemento.
 - Elaboracion del formulario para añadir un nuevo elemento.
 - Revisión de algunas partes del codigo y colaboracion en las discusiones sobre el estilo de la pagina
+
 **Commits más significativos:**
 
-**Ficheros en los que mas he participado:**
+**Ficheros en los que más he participado:**
 - README.md
   https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
 - NewElementPage.html 
