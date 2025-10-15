@@ -139,7 +139,8 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
 - Revisión de algunas partes del codigo y colaboracion en las discusiones sobre el estilo de la pagina
 
 **Commits más significativos:**
-- https://github.com/CodeURJC-FW-2025-26/webapp08/commit/85b7a1175b899b2f6b121c3373f45d8d2e203f99
+- Redacción del archivo READ.md https://github.com/CodeURJC-FW-2025-26/webapp08/commit/85b7a1175b899b2f6b121c3373f45d8d2e203f99
+- Creación de la primera version de la pagina de nuevo elemento (la versión final la ha subido Ahmed) https://github.com/CodeURJC-FW-2025-26/webapp08/commits/main/NewElementPage.html
 
 **Ficheros en los que más he participado:**
 - README.md
