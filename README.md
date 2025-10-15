@@ -107,7 +107,8 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
    https://github.com/CodeURJC-FW-2025-26/webapp08/commit/f6ac5af86a22cd55be8758113452a43f5372adc1
 4. Se modificó el formulario para que permita subir una imagen desde el ordenador en lugar de requerir una URL, mejorando la usabilidad. Además, se incorporó la clase plate-card-detail para diferenciar la maquetación de      la página de detalle y aplicar estilos específicos que mejoran su presentación y coherencia visual.  
    https://github.com/CodeURJC-FW-2025-26/webapp08/commit/868efa8d41fe5308814d2bb4593f348b67cae635
-  
+
+### Participación de 
 
 **Ficheros en los que más he participado:**
 - DetailPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/DetailPage.html
