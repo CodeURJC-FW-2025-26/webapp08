@@ -520,6 +520,8 @@ const backUrl = `/plates/${req.params.id}`;
   }
 }
     //End of Miguel Angel part
+  
+//Miguel Angel part
 async function deleteIngredient(req, res) {
   const plateId = req.params.plateId;
   const ingId = req.params.ingId;
@@ -558,107 +560,6 @@ async function deleteIngredient(req, res) {
       `/editerroringredient?message=${encodeURIComponent(
         errorMsg
       )}&redirectTo=${encodeURIComponent(backUrl)}`
-    );
-  }
-}  
-//Miguel Angel part
-async function updateIngredient(req, res) {
-  const plateId = req.params.plateId;
-  const ingId = req.params.ingId;
-  const formUrl = `/plates/${plateId}/ingredients/${ingId}/edit`;
-  const backUrl = `/plates/${plateId}`;
-
-  try {
-    const plate = await Plate.findById(plateId);
-    if (!plate) {
-      const errorMsg = "Plato no encontrado para actualizar el ingrediente.";
-      return res.redirect(
-        `/editerroringredient?message=${encodeURIComponent(
-          errorMsg
-        )}&redirectTo=/`
-      );
-    }
-
-    // check ingredient belongs to plate
-    if (!plate.ingredients.map((id) => id.toString()).includes(ingId)) {
-      const errorMsg = "Ingrediente no pertenece a este plato.";
-      return res.redirect(
-        `/editerroringredient?message=${encodeURIComponent(
-          errorMsg
-        )}&redirectTo=${encodeURIComponent(backUrl)}`
-      );
-    }
-
-    const { name, description } = req.body;
-    if (
-      !name ||
-      name.trim() === "" ||
-      !description ||
-      description.trim() === ""
-    ) {
-      const errorMsg =
-        "Faltan campos por completar. Nombre y descripción son obligatorios.";
-      return res.redirect(
-        `/editerroringredient?message=${encodeURIComponent(
-          errorMsg
-        )}&redirectTo=${encodeURIComponent(formUrl)}`
-      );
-    }
-
-    // check duplicate ingredient name (other than itself)
-    const populatedPlate = await Plate.findById(plateId)
-      .populate("ingredients")
-      .lean();
-    const isDuplicate = (populatedPlate.ingredients || []).some(
-      (existingIng) =>
-        existingIng._id.toString() !== ingId &&
-        existingIng.name.toLowerCase() === name.trim().toLowerCase()
-    );
-    if (isDuplicate) {
-      const errorMsg = `Error: El ingrediente con el nombre "${name.trim()}" ya existe en este plato.`;
-      return res.redirect(
-        `/editerroringredient?message=${encodeURIComponent(
-          errorMsg
-        )}&redirectTo=${encodeURIComponent(formUrl)}`
-      );
-    }
-
-    const ing = await Ingredient.findById(ingId);
-    if (!ing) {
-      const errorMsg = "Ingrediente no encontrado.";
-      return res.redirect(
-        `/editerroringredient?message=${encodeURIComponent(
-          errorMsg
-        )}&redirectTo=${encodeURIComponent(backUrl)}`
-      );
-    }
-
-    ing.name = name.trim();
-    ing.description = description.trim();
-    if (req.file && req.file.filename) {
-      // delete old image if you want (optional)
-      if (ing.image) {
-        try {
-          fs.unlinkSync(path.join(process.cwd(), ing.image.replace(/^\//, "")));
-        } catch (e) {}
-      }
-      ing.image = "/uploads/" + req.file.filename;
-    }
-
-    await ing.save();
-    const successMsg = `El ingrediente "${ing.name}" ha sido actualizado correctamente.`;
-    return res.redirect(
-      `/editconfirmationingredient?message=${encodeURIComponent(
-        successMsg
-      )}&redirectTo=${encodeURIComponent(backUrl)}`
-    );
-  } catch (err) {
-    console.error("Error updateIngredient:", err);
-    const errorMsg = "Error interno del servidor al actualizar el ingrediente.";
-    return res.redirect(
-      `/editerroringredient?message=${encodeURIComponent(
-        errorMsg
-      )}&redirectTo=${encodeURIComponent(formUrl)}`
     );
   }
 }
