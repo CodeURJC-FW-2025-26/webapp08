@@ -233,7 +233,7 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 - Redacción del archivo README del proyecto.
 - Realización de las validaciones de la página de nuevo elemento
 - Validaciones con HTML y SERVIDOR
-- Grabación del vídeo
+- Grabación del vídeo https://youtu.be/NTfbOREA2Bk
 - Revisión final de todo el proyecto incluyendo formateo (bien tabulado) y traducción de los comentarios a inglés (aunque no los haya subido yo al Git)
 
 **Commits más significativos:**
@@ -313,3 +313,6 @@ Durante esta práctica, me encargué del desarrollo de las páginas de error y d
 - editingredientform.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editingredientform.mustache
 - createerroringredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/createerroringredient.mustache
 - editerroringredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editerroringredient.mustache
+
+  ### Vídeo en Youtube:
+  https://youtu.be/NTfbOREA2Bk
