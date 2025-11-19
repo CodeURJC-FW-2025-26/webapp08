@@ -106,7 +106,6 @@ router.put(
 // delete plate
 router.delete("/plates/:id", platesController.deletePlate);
 
-//Miguel Angel part
 // ingredients: add, delete, edit
 router.post(
   "/plates/:id/ingredients",
@@ -154,7 +153,6 @@ router.get("/createerroringredient", platesController.showErrorPageCreate);
 
 // Route to SHOW the error page when editing an ingredient (ADDED)
 router.get("/editerroringredient", platesController.showErrorPageEdit);
-//Enf of Miguel Angel part
 
 
 // ---------- Generic error page (redirect here from controllers) ----------
