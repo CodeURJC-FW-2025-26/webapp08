@@ -281,7 +281,7 @@ async function showPlate(req, res) {
     return res.render("detail", {
       plate,
       //Miguel Angel art
-
+    plateId: plate._id.toString(),
       //End of Miguel Angel part
     });
   } catch (err) {
