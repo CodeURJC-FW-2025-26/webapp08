@@ -248,6 +248,27 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 - README https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
 
 ### Participación de Ahmed Ehab
+**Tareas realizadas:**
+- Creación de todas las carpetas y archivos, y cambios de documentos html a formato mustache para adecuarlo a la práctica.
+- Creación y elaboración inicial de los archivos plateController.js, plates.js.
+- Creación y elaboración total de los archivos models/plate.js, models/ingredient.js, views/confirmation.mustache, views/error.mustache, views/main.musatche, views/detail.musatche, views/new.musatche
+- Revisión visual de coherencia de diseño de todas las páginas.
+- Mejorar el diseño de la página de algunas paginas de error y confirmación correspondientes a mis compañeros.
+- Mejoras minimas en el requerimiento de imagenes al editar, crear plato o ingrediente tanto en el cliente como en el servidor.
+
+**Commits más significativos:**
+1. Elaboracion detallada de la estructura "plateController.js". https://github.com/CodeURJC-FW-2025-26/webapp08/commit/814363679af814e014c5ccd2ad4e31ba784d7352
+2. Elaboracion detallada de la estructura "Plate.js". https://github.com/CodeURJC-FW-2025-26/webapp08/commit/297dd1ff49dd6293042b6b24c4d73b2d5eabc156
+4. Elaboracion detallada de la estructura "Ingredients.js". https://github.com/CodeURJC-FW-2025-26/webapp08/commit/6c4e16a00cc7969d005bc6d328e52a1139d45d48
+5. Elaboracion detallada de la estructura "Confirmation.mustache". https://github.com/CodeURJC-FW-2025-26/webapp08/commit/f45ea055a06389af2e11243e4673d9a1d1384664
+6. Elaboracion detallada de la estructura "Error.mustache". https://github.com/CodeURJC-FW-2025-26/webapp08/commit/37e23b171bf0e56f7179c901ade2c4eddbb62f00
+
+**Ficheros en los que más he participado:**
+- plateController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/controller/platesController.js
+- PLate.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/models/Plate.js
+- Ingredients.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/models/Ingredient.js
+- Confirmation.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/confirmation.mustache
+- Error.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/error.mustache
 
 ### Participación de Íñigo Pérez
 **Tareas realizadas:**
