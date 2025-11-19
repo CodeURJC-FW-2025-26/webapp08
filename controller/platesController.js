@@ -493,7 +493,32 @@ const backUrl = `/plates/${req.params.id}`;
     const imagePath =
       req.file && req.file.filename ? "/uploads/" + req.file.filename : "";
     //Miguel Angel part
+    const newIng = new Ingredient({
+      name: name.trim(),
+      description: description.trim(),
+      image: imagePath,
+    });
+    await newIng.save();
 
+    plate.ingredients.push(newIng._id);
+    await plate.save();
+
+    const successMsg = `El ingrediente "${name.trim()}" se ha añadido correctamente.`;
+    return res.redirect(
+      `/createconfirmationingredient?message=${encodeURIComponent(
+        successMsg
+      )}&redirectTo=${encodeURIComponent(backUrl)}`
+    );
+  } catch (err) {
+    console.error("Error addIngredient:", err);
+    const errorMsg = "Error interno del servidor al añadir el ingrediente.";
+    return res.redirect(
+      `/createerroringredient?message=${encodeURIComponent(
+        errorMsg
+      )}&redirectTo=${encodeURIComponent(backUrl)}`
+    );
+  }
+}
     //End of Miguel Angel part
   
 //Miguel Angel part
