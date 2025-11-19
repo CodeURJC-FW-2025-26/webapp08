@@ -437,6 +437,7 @@ async function updatePlate(req, res) {
   }
 }
 
+
 /**
  * Delete plate
  */
