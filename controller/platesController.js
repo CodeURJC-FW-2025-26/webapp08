@@ -202,7 +202,18 @@ async function createPlate(req, res) {
   // validations with express-validator
   const validation = handleValidationErrors(req);
   //Iñigo part
-
+  if (!validation.ok) {
+    // build readable error message
+    const msgs = validation.errors.map((e) => e.msg).join(" | ");
+    const title = encodeURIComponent("Error de validación");
+    const message = encodeURIComponent(
+      msgs || "Errores en los datos del formulario"
+    );
+    const returnUrl = encodeURIComponent("/plates/new");
+    return res.redirect(
+      `/error?title=${title}&message=${message}&returnUrl=${returnUrl}`
+    );
+  }
   //End of Iñigo part
 
   // UNIQUE TITLE validation (server-side)
@@ -257,7 +268,14 @@ async function createPlate(req, res) {
     console.error("Error createPlate:", err);
     // handle duplicate title (rare case if previous check fails)
     //Iñigo Part
-
+    if (err && err.code === 11000) {
+      const title = encodeURIComponent("Título duplicado");
+      const message = encodeURIComponent("Ya existe un plato con ese título.");
+      const returnUrl = encodeURIComponent("/plates/new");
+      return res.redirect(
+        `/error?title=${title}&message=${message}&returnUrl=${returnUrl}`
+      );
+    }
     //End of Iñigo part
     const title = encodeURIComponent("Error servidor");
     const message = encodeURIComponent(
@@ -374,7 +392,13 @@ async function showEditForm(req, res) {
 async function updatePlate(req, res) {
   const validation = handleValidationErrors(req);
   //Iñigo Part
-
+  if (!validation.ok) {
+    return res.status(400).render("errorplate", {
+      message: "No se han cumplido las validaciones para editar el plato.",
+      errors: validation.errors,
+      backLink: `/plates/${req.params.id}/edit`,
+    });
+  }
   //End of Iñigo part
 
   try {
@@ -404,12 +428,21 @@ async function updatePlate(req, res) {
     await plate.save();
 
     // Iñigo part – intermediate confirmation page after updating
-
+    return res.render("confirmupdateplate", {
+      id: plate._id,
+      title: plate.title,
+    });
     // ── end Iñigo part ──
   } catch (err) {
     console.error("Error updatePlate:", err);
     // Iñigo part – duplicate title error on edit
-
+    if (err && err.code === 11000) {
+      return res.status(400).render("errorplate", {
+        message: "Ya existe otro plato con ese título.",
+        errors: [],
+        backLink: `/plates/${req.params.id}/edit`,
+      });
+    }
     // ── end Iñigo part ──
 
     res.status(500).render("errorplate", {
@@ -447,7 +480,7 @@ async function deletePlate(req, res) {
     }
 
     // Iñigo part – intermediate confirmation page after deletion
-
+    return res.render("confirmdeleteplate");
     // ── end Iñigo part ──
   } catch (err) {
     console.error("Error deletePlate:", err);
