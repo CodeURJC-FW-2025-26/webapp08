@@ -201,7 +201,6 @@ function showNewForm(req, res) {
 async function createPlate(req, res) {
   // validations with express-validator
   const validation = handleValidationErrors(req);
-  //Iñigo part
   if (!validation.ok) {
     // build readable error message
     const msgs = validation.errors.map((e) => e.msg).join(" | ");
@@ -214,7 +213,6 @@ async function createPlate(req, res) {
       `/error?title=${title}&message=${message}&returnUrl=${returnUrl}`
     );
   }
-  //End of Iñigo part
 
   // UNIQUE TITLE validation (server-side)
   try {
@@ -267,7 +265,6 @@ async function createPlate(req, res) {
   } catch (err) {
     console.error("Error createPlate:", err);
     // handle duplicate title (rare case if previous check fails)
-    //Iñigo Part
     if (err && err.code === 11000) {
       const title = encodeURIComponent("Título duplicado");
       const message = encodeURIComponent("Ya existe un plato con ese título.");
@@ -276,7 +273,6 @@ async function createPlate(req, res) {
         `/error?title=${title}&message=${message}&returnUrl=${returnUrl}`
       );
     }
-    //End of Iñigo part
     const title = encodeURIComponent("Error servidor");
     const message = encodeURIComponent(
       "Error al crear plato. Intenta más tarde."
@@ -312,9 +308,7 @@ async function showPlate(req, res) {
     // Provide plateId to the view (used for ingredient links)
     return res.render("detail", {
       plate,
-      //Miguel Angel art
     plateId: plate._id.toString(),
-      //End of Miguel Angel part
     });
   } catch (err) {
     console.error("Error showPlate:", err);
@@ -391,7 +385,6 @@ async function showEditForm(req, res) {
  */
 async function updatePlate(req, res) {
   const validation = handleValidationErrors(req);
-  //Iñigo Part
   if (!validation.ok) {
     return res.status(400).render("errorplate", {
       message: "No se han cumplido las validaciones para editar el plato.",
@@ -399,7 +392,6 @@ async function updatePlate(req, res) {
       backLink: `/plates/${req.params.id}/edit`,
     });
   }
-  //End of Iñigo part
 
   try {
     const plate = await Plate.findById(req.params.id);
@@ -427,15 +419,14 @@ async function updatePlate(req, res) {
 
     await plate.save();
 
-    // Iñigo part – intermediate confirmation page after updating
+    // intermediate confirmation page after updating
     return res.render("confirmupdateplate", {
       id: plate._id,
       title: plate.title,
     });
-    // ── end Iñigo part ──
   } catch (err) {
     console.error("Error updatePlate:", err);
-    // Iñigo part – duplicate title error on edit
+    // duplicate title error on edit
     if (err && err.code === 11000) {
       return res.status(400).render("errorplate", {
         message: "Ya existe otro plato con ese título.",
@@ -443,7 +434,6 @@ async function updatePlate(req, res) {
         backLink: `/plates/${req.params.id}/edit`,
       });
     }
-    // ── end Iñigo part ──
 
     res.status(500).render("errorplate", {
       message: "Error inesperado al actualizar el plato.",
@@ -479,9 +469,7 @@ async function deletePlate(req, res) {
       });
     }
 
-    // Iñigo part – intermediate confirmation page after deletion
     return res.render("confirmdeleteplate");
-    // ── end Iñigo part ──
   } catch (err) {
     console.error("Error deletePlate:", err);
     res.status(500).render("errorplate", {
@@ -494,7 +482,7 @@ async function deletePlate(req, res) {
 
 /* Ingredients: add, delete, edit */
 async function addIngredient(req, res) {
-  //Miguel Angel part
+
 const backUrl = `/plates/${req.params.id}`;
   try {
     const plate = await Plate.findById(req.params.id);
@@ -508,7 +496,7 @@ const backUrl = `/plates/${req.params.id}`;
       const errorMsg = 'Faltan campos por completar. Nombre y descripción son obligatorios.';
       return res.redirect(`/createerroringredient?message=${encodeURIComponent(errorMsg)}&redirectTo=${encodeURIComponent(backUrl)}`);
     }
-  //End of Miguel Angel part
+
     if (!req.file) {
       const errorMsg = "La imagen del ingrediente es obligatoria.";
       return res.redirect(
@@ -520,7 +508,7 @@ const backUrl = `/plates/${req.params.id}`;
 
     // check duplicate ingredient in plate (search by name)
     // first populate current ingredients to compare names
-    //Miguel Angel part
+
     await plate.populate("ingredients").execPopulate?.(); // in Mongoose 6 execPopulate doesn't exist; use next line:
     const populatedPlate = await Plate.findById(req.params.id)
       .populate("ingredients")
@@ -536,10 +524,10 @@ const backUrl = `/plates/${req.params.id}`;
         )}&redirectTo=${encodeURIComponent(backUrl)}`
       );
     }
-    //End of Miguel Angel part
+
     const imagePath =
       req.file && req.file.filename ? "/uploads/" + req.file.filename : "";
-    //Miguel Angel part
+
     const newIng = new Ingredient({
       name: name.trim(),
       description: description.trim(),
@@ -566,9 +554,8 @@ const backUrl = `/plates/${req.params.id}`;
     );
   }
 }
-    //End of Miguel Angel part
+
   
-//Miguel Angel part
 async function deleteIngredient(req, res) {
   const plateId = req.params.plateId;
   const ingId = req.params.ingId;
@@ -610,9 +597,9 @@ async function deleteIngredient(req, res) {
     );
   }
 }
-//End of Miguel Angel part
 
-//Miguel Angel part
+
+
 async function updateIngredient(req, res) {
   const plateId = req.params.plateId;
   const ingId = req.params.ingId;
@@ -713,7 +700,7 @@ async function updateIngredient(req, res) {
     );
   }
 }
-//End of Miguel Angel part
+
 
 // Replace current editIngredientForm function with this:
 async function editIngredientForm(req, res) {
@@ -746,7 +733,6 @@ async function editIngredientForm(req, res) {
     }
     
     // 3) load actual Ingredient document
-    //Miguel Angel part
     const ingredient = await Ingredient.findById(ingId).lean();
     if (!ingredient) {
       return res.status(404).render("editerroringredient", {
@@ -849,7 +835,7 @@ async function showErrorPageEdit(req, res) {
     redirectUrl: redirectUrl,
   });
 }
-//End of Miguel Angel part
+
 /* --- Export all functions --- */
 module.exports = {
   listPlates,
