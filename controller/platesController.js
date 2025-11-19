@@ -448,7 +448,19 @@ async function deletePlate(req, res) {
 /* Ingredients: add, delete, edit */
 async function addIngredient(req, res) {
   //Miguel Angel part
+const backUrl = `/plates/${req.params.id}`;
+  try {
+    const plate = await Plate.findById(req.params.id);
+    if (!plate) {
+      const errorMsg = 'Plato no encontrado.';
+      return res.redirect(`/createerroringredient?message=${encodeURIComponent(errorMsg)}&redirectTo=/`);
+    }
 
+    const { name, description } = req.body;
+    if (!name || name.trim() === '' || !description || description.trim() === '') {
+      const errorMsg = 'Faltan campos por completar. Nombre y descripción son obligatorios.';
+      return res.redirect(`/createerroringredient?message=${encodeURIComponent(errorMsg)}&redirectTo=${encodeURIComponent(backUrl)}`);
+    }
   //End of Miguel Angel part
     if (!req.file) {
       const errorMsg = "La imagen del ingrediente es obligatoria.";
