@@ -1,0 +1,19 @@
+{{> header}}
+
+<div class="container mt-5">
+  <div class="contact-card text-center">
+    <h2 class="contact-title">{{title}}</h2>
+    <p class="contact-info">{{message}}</p>
+
+    <div class="mt-4">
+      {{#returnUrl}}
+        <a href="{{returnUrl}}" class="btn btn-create">Volver</a>
+      {{/returnUrl}}
+      {{^returnUrl}}
+        <a href="/" class="btn btn-create">Volver al inicio</a>
+      {{/returnUrl}}
+    </div>
+  </div>
+</div>
+
+{{> footer}}
