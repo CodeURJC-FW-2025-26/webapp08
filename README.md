@@ -267,3 +267,28 @@ Durante esta práctica, me encargué del desarrollo de las páginas de error y d
 
 
 ### Participación de Miguel Ángel Abián Arienza
+**Tareas realizadas:**
+- Redacción del archivo README del proyecto.
+- Realización de las validaciones de la página de nuevo elemento de la entidad secundaria, editar elemento de la entidad secundaria y borrar elemento de la entida secundaria. 
+- Validaciones con HTML y SERVIDOR
+- Revisión de algunas partes del código y colaboración en las discusiones sobre cambios del mismo.
+  
+**Commits más significativos:**
+1. Redacción y modificación del readme principal. 
+2. Realización de la validacion de crear ingrediente. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/b9590a40b7accb90f32ea3cab90981642adeb94a
+3. Realización de la validacion de editar ingrediente. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/18877a4bdb54a81acbdc94abf8357f968acc7a4c
+4. Realización de la validacion de borrar ingrediente. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/ff6b90bc0722d5b924f596ddf59301a3d0db154b
+5. Modificación de plates.js creando los validators para crear/editar/borrar ingredientes. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/15d825f8e9dadc86061682190308009cea136fd6
+
+
+**Ficheros en los que más he participado:**
+- README.ME https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
+- DetailPage.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/DetailPage.html
+- routers.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/routes/plates.js
+- platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/controller/platesController.js
+- createconfirmationingredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/createconfirmationingredient.mustache
+- editconfirmationingredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editconfirmationingredient.mustache
+- deleteconfirmationingredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/deleteconfirmationingredient.mustache
+- editingredientform.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editingredientform.mustache
+- createerroringredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/createerroringredient.mustache
+- editerroringredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editerroringredient.mustache
