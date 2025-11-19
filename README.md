@@ -237,10 +237,10 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 - Revisión final de todo el proyecto incluyendo formateo (bien tabulado) y traducción de los comentarios a inglés (aunque no los haya subido yo al Git)
 
 **Commits más significativos:**
-1. Redacción y modificación del readme principal. 
-2. Realización de las validaciones en la página de nuevo elemento. 
-3. Modificación de plates.js creando los validators para crear/editar platos. 
-4. Pequeños ajustes en los códigos, que esté bien tabulado y que todo esté en inglés. 
+1. Redacción y modificación del readme principal. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/0cc0d30c71c19fa03804cffd512312b9881d6d57
+2. Realización de las validaciones en la página de nuevo elemento. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/5cfa3a5fa2d35da787f276e8805df380d1900bea
+3. Modificación de plates.js creando los validators para crear/editar platos. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/55b29fa0648ec1a171628660278a4788630892bd
+4. Pequeños ajustes en los códigos, que esté bien tabulado y que todo esté en inglés. (No está subido por mi la versión final de los códigos) https://github.com/CodeURJC-FW-2025-26/webapp08/commit/b337347fffe73e78d614655cc4433417704c7f3d 
 
 **Ficheros en los que más he participado:**
 - 
