@@ -243,7 +243,7 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 4. Pequeños ajustes en los códigos, que esté bien tabulado y que todo esté en inglés. (No está subido por mi la versión final de los códigos) https://github.com/CodeURJC-FW-2025-26/webapp08/commit/b337347fffe73e78d614655cc4433417704c7f3d 
 
 **Ficheros en los que más he participado:**
-- platesController.jshttps://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/controller/platesController.js
+- platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/controller/platesController.js
 - plates.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/routes/plates.js
 - README https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
 
