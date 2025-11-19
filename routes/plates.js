@@ -21,9 +21,34 @@ const upload = multer({ storage });
 
 // validators for creating/editing a plate
 const plateValidators = [
-  //Yang part
+  body("type").notEmpty().withMessage("El tipo de plato es obligatorio"),
 
-  //End of Yang part
+  body("title")
+    .notEmpty()
+    .withMessage("El título es obligatorio")
+    .isLength({ min: 3, max: 30 })
+    .withMessage("El título debe tener entre 3 y 30 caracteres")
+    .matches(/^[A-ZÁÉÍÓÚÑ]/)
+    .withMessage("El título debe empezar por mayúscula"),
+
+  body("description")
+    .notEmpty()
+    .withMessage("La descripción es obligatoria")
+    .isLength({ min: 20, max: 200 })
+    .withMessage("La descripción debe tener entre 20 y 200 caracteres"),
+
+  body("price")
+    .notEmpty()
+    .withMessage("El precio es obligatorio")
+    .isFloat({ min: 1, max: 100 })
+    .withMessage("El precio debe estar entre 1 y 100 euros"),
+
+  body("duration")
+    .notEmpty()
+    .withMessage("La duración es obligatoria")
+    .isInt({ min: 1, max: 60 })
+    .withMessage("La duración debe estar entre 1 y 60 minutos"),
+
   // ---------- custom validator to require image(s) ----------
   // Note: multer must run BEFORE in the chain (upload.array) so req.files exists.
   body("plateImage").custom((value, { req }) => {
