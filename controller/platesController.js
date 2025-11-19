@@ -385,61 +385,55 @@ async function showEditForm(req, res) {
  */
 async function updatePlate(req, res) {
   const validation = handleValidationErrors(req);
+
   if (!validation.ok) {
-    return res.status(400).render("errorplate", {
-      message: "No se han cumplido las validaciones para editar el plato.",
-      errors: validation.errors,
-      backLink: `/plates/${req.params.id}/edit`,
-    });
+    return res.status(400).render('new', { errors: validation.errors, plate: req.body, editing: true, allergenOptions: ALLERGEN_OPTIONS });
   }
 
   try {
     const plate = await Plate.findById(req.params.id);
-    if (!plate)
-      return res.status(404).render("error", {
-        title: "No encontrado",
-        message: "Plato no encontrado",
-        showHome: true,
-      });
+    if (!plate) return res.status(404).render('error', { title: 'No encontrado', message: 'Plato no encontrado', showHome: true });
 
     plate.title = req.body.title;
     plate.type = req.body.type;
     plate.description = req.body.description;
     plate.price = parseFloat(req.body.price || 0);
     plate.duration = parseInt(req.body.duration || 0, 10);
-    plate.allergens = Array.isArray(req.body.allergens)
-      ? req.body.allergens
-      : req.body.allergens
-      ? [req.body.allergens]
-      : [];
+    plate.allergens = Array.isArray(req.body.allergens) ? req.body.allergens : (req.body.allergens ? [req.body.allergens] : []);
 
     if (req.files && req.files.length) {
-      req.files.forEach((f) => plate.images.push("/uploads/" + f.filename));
-    }
+      const newFile = req.files[0];
+      const newPath = '/uploads/' + newFile.filename;
 
+      if (Array.isArray(plate.images) && plate.images.length > 0) {
+        try {
+          const oldRel = plate.images[0].replace(/^\//, ''); // quitar slash inicial
+          const oldPath = path.join(process.cwd(), oldRel);
+          if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+        } catch (e) {
+          console.warn('No se pudo borrar imagen antigua:', e.message);
+        }
+        plate.images[0] = newPath;
+      } else {
+        plate.images = [ newPath ];
+      }
+
+      if (req.files.length > 1) {
+        for (let i = 1; i < req.files.length; i++) {
+          plate.images.push('/uploads/' + req.files[i].filename);
+        }
+      }
+
+    } 
     await plate.save();
 
-    // intermediate confirmation page after updating
-    return res.render("confirmupdateplate", {
-      id: plate._id,
-      title: plate.title,
-    });
+    return res.redirect(`/plates/${plate._id}`);
   } catch (err) {
-    console.error("Error updatePlate:", err);
-    // duplicate title error on edit
+    console.error('Error updatePlate:', err);
     if (err && err.code === 11000) {
-      return res.status(400).render("errorplate", {
-        message: "Ya existe otro plato con ese título.",
-        errors: [],
-        backLink: `/plates/${req.params.id}/edit`,
-      });
+      return res.status(400).render('new', { errors: [{ msg: 'Ya existe un plato con ese título' }], plate: req.body, editing: true, allergenOptions: ALLERGEN_OPTIONS });
     }
-
-    res.status(500).render("errorplate", {
-      message: "Error inesperado al actualizar el plato.",
-      errors: [],
-      backLink: `/plates/${req.params.id}/edit`,
-    });
+    return res.status(500).render('error', { title: 'Error', message: 'Error al actualizar plato' });
   }
 }
 
