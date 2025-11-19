@@ -28,9 +28,11 @@ const ALLERGEN_OPTIONS = [
 
 /* --- Helpers --- */
 function handleValidationErrors(req) {
-  //Yang part
-
-  //End of Yang part
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return { ok: false, errors: errors.array() };
+  }
+  return { ok: true };
 }
 
 function escapeRegExp(string) {
@@ -205,9 +207,15 @@ async function createPlate(req, res) {
 
   // UNIQUE TITLE validation (server-side)
   try {
-    //Yang part
-
-    //End of Yang part
+    const existingPlate = await Plate.findOne({ title: req.body.title });
+    if (existingPlate) {
+    const title = encodeURIComponent("Título duplicado");
+    const message = encodeURIComponent("Ya existe un plato con ese título.");
+    const returnUrl = encodeURIComponent("/plates/new");
+    return res.redirect(
+        `/error?title=${title}&message=${message}&returnUrl=${returnUrl}`
+    );
+  }
   } catch (errFind) {
     console.error("Error checking existing title:", errFind);
     const title = encodeURIComponent("Error servidor");
@@ -232,9 +240,15 @@ async function createPlate(req, res) {
       req.files.forEach((f) => images.push("/uploads/" + f.filename));
     }
 
-    //Yang part
-
-    //End of Yang part
+    const plate = new Plate({
+      title,
+      type,
+      description,
+      price: parseFloat(price || 0),
+      duration: parseInt(duration || 0, 10),
+      allergens,
+      images,
+    });
 
     await plate.save();
     // redirect to intermediate confirmation page
