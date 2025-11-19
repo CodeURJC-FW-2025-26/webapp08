@@ -1,0 +1,24 @@
+{{> header}}
+
+<div class="container mt-5">
+  <div class="contact-card text-center">
+    <h2 class="contact-title">{{title}}</h2>
+    <p class="contact-info">{{message}}</p>
+
+    <div class="row justify-content-center mt-3">
+      <div class="col-12 col-md-6">
+        <div class="plate-card p-3">
+          <img src="{{plateImage}}" alt="{{plateTitle}}" class="img-fluid rounded-zen mb-3">
+          <h4 class="plate-title">{{plateTitle}}</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <a href="/plates/{{plateId}}" class="btn btn-create me-2">Ir al detalle</a>
+      <a href="/" class="btn btn-secondary">Volver al listado</a>
+    </div>
+  </div>
+</div>
+
+{{> footer}}
