@@ -269,12 +269,12 @@ Durante esta práctica, me encargué del desarrollo de las páginas de error y d
 ### Participación de Miguel Ángel Abián Arienza
 **Tareas realizadas:**
 - Redacción del archivo README del proyecto.
-- Realización de las validaciones de la página de nuevo elemento de la entidad secundaria, editar elemento de la entidad secundaria y borrar elemento de la entida secundaria. 
+- Realización de las validaciones de la página de detalle de la entidad secundaria, crear elemento de la entidad secundaria, editar elemento de la entidad secundaria y borrar elemento de la entida secundaria. 
 - Validaciones con HTML y SERVIDOR
 - Revisión de algunas partes del código y colaboración en las discusiones sobre cambios del mismo.
   
 **Commits más significativos:**
-1. Redacción y modificación del readme principal. 
+1. Redacción y modificación del readme principal. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/11c4206adeae382759c7285e7d0bf2af405a52ec
 2. Realización de la validacion de crear ingrediente. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/b9590a40b7accb90f32ea3cab90981642adeb94a
 3. Realización de la validacion de editar ingrediente. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/18877a4bdb54a81acbdc94abf8357f968acc7a4c
 4. Realización de la validacion de borrar ingrediente. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/ff6b90bc0722d5b924f596ddf59301a3d0db154b
