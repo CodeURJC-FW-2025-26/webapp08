@@ -700,7 +700,108 @@ async function editIngredientForm(req, res) {
     
     // 3) load actual Ingredient document
     //Miguel Angel part
+    const ingredient = await Ingredient.findById(ingId).lean();
+    if (!ingredient) {
+      return res.status(404).render("editerroringredient", {
+        title: "Ingrediente no encontrado",
+        message: "No se encontró el ingrediente solicitado.",
+        returnUrl: `/plates/${plateId}`,
+      });
+    }
 
+    // 4) Render the edit ingredient form with ingredient data
+    return res.render("editingredientform", {
+      plateId: plateId,
+      ingId: ingId,
+      ingredient: {
+        _id: ingredient._id,
+        name: ingredient.name || "",
+        description: ingredient.description || "",
+        image: ingredient.image || "",
+      },
+    });
+  } catch (err) {
+    console.error("Error editIngredientForm:", err);
+    return res.status(500).render("editerroringredient", {
+      title: "Error servidor",
+      message: "Error al cargar formulario de edición",
+      returnUrl: `/plates/${req.params.plateId || ""}`,
+    });
+  }
+}
+
+
+async function showConfirmationPageCreate(req, res) {
+  // Retrieve the success message and the return URL (which will be the plate detail)
+  const successMessage =
+    req.query.message || "La operación se ha completado con éxito.";
+  const redirectUrl = req.query.redirectTo || "/";
+
+  // Render confirmation view
+  res.render("createconfirmationingredient", {
+    // Create this view
+    successMessage: successMessage,
+    redirectUrl: redirectUrl,
+  });
+}
+
+async function showConfirmationPageEdit(req, res) {
+  // Retrieve the success message and the return URL (which will be the plate detail)
+  const successMessage =
+    req.query.message || "La operación se ha completado con éxito.";
+  const redirectUrl = req.query.redirectTo || "/";
+
+  // Render confirmation view
+  res.render("editconfirmationingredient", {
+    // Create this view
+    successMessage: successMessage,
+    redirectUrl: redirectUrl,
+  });
+}
+
+async function showConfirmationPageDelete(req, res) {
+  // Retrieve the success message and the return URL (which will be the plate detail)
+  const successMessage =
+    req.query.message || "La operación se ha completado con éxito.";
+  const redirectUrl = req.query.redirectTo || "/";
+
+  // Render confirmation view
+  res.render("deleteconfirmationingredient", {
+    // Create this view
+    successMessage: successMessage,
+    redirectUrl: redirectUrl,
+  });
+}
+
+async function showErrorPageCreate(req, res) {
+  // Retrieve data from the URL (Query Parameters)
+  // 'message' is the specific error text (e.g., "Duplicate name").
+  const errorMessage =
+    req.query.message || "Se ha producido un error desconocido.";
+  // 'redirectTo' is the URL where the button should lead back (e.g., /plates/ID).
+  const redirectUrl = req.query.redirectTo || "/";
+
+  // Render error view
+  res.render("createerroringredient", {
+    errorMessage: errorMessage,
+    redirectUrl: redirectUrl,
+  });
+}
+
+async function showErrorPageEdit(req, res) {
+  // Retrieve data from the URL (Query Parameters)
+  // 'message' is the specific error text (e.g., "Duplicate name").
+  const errorMessage =
+    req.query.message || "Se ha producido un error desconocido.";
+  // 'redirectTo' is the URL where the button should lead back (e.g., /plates/ID).
+  const redirectUrl = req.query.redirectTo || "/";
+
+  // Render error view
+  res.render("editerroringredient", {
+    errorMessage: errorMessage,
+    redirectUrl: redirectUrl,
+  });
+}
 //End of Miguel Angel part
 /* --- Export all functions --- */
 module.exports = {
