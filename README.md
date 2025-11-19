@@ -227,3 +227,28 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 **- public/css/Style.css:** Estilos (navbar, tarjetas, grid, paginación, etc.). Responsabilidad: definir apariencia global y clases como .plate-card, .contact-card, .btn-create, .hero-img, .category-pills, etc.
 
 **- seed/seed_plates.js:** Scripts para insertar datos de muestra en la BD si está vacía.
+
+### Participación de Zhiyang Ni
+**Tareas realizadas:**
+- Redacción del archivo README del proyecto.
+- Realización de las validaciones de la página de nuevo elemento
+- Validaciones con HTML y SERVIDOR
+- Grabación del vídeo
+- Revisión final de todo el proyecto incluyendo formateo (bien tabulado) y traducción de los comentarios a inglés (aunque no los haya subido yo al Git)
+
+**Commits más significativos:**
+1. Redacción y modificación del readme principal. 
+2. Realización de las validaciones en la página de nuevo elemento. 
+3. Modificación de plates.js creando los validators para crear/editar platos. 
+4. Pequeños ajustes en los códigos, que esté bien tabulado y que todo esté en inglés. 
+
+**Ficheros en los que más he participado:**
+- 
+-
+-
+
+### Participación de Ahmed Ehab
+
+### Participación de Íñigo Pérez
+
+### Participación de Miguel Ángel Abián Arienza
