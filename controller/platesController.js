@@ -520,7 +520,47 @@ const backUrl = `/plates/${req.params.id}`;
   }
 }
     //End of Miguel Angel part
-  
+async function deleteIngredient(req, res) {
+  const plateId = req.params.plateId;
+  const ingId = req.params.ingId;
+  const backUrl = `/plates/${plateId}`;
+
+  try {
+    const plate = await Plate.findById(plateId);
+    if (!plate) {
+      const errorMsg = "Plato no encontrado para eliminar el ingrediente.";
+      return res.redirect(
+        `/editerroringredient?message=${encodeURIComponent(
+          errorMsg
+        )}&redirectTo=/`
+      );
+    }
+
+    // Remove ingredient reference from plate
+    plate.ingredients = plate.ingredients.filter(
+      (id) => id.toString() !== ingId
+    );
+    await plate.save();
+
+    // Delete ingredient document
+    await Ingredient.findByIdAndDelete(ingId);
+
+    const successMsg = `El ingrediente ha sido borrado correctamente.`;
+    return res.redirect(
+      `/deleteconfirmationingredient?message=${encodeURIComponent(
+        successMsg
+      )}&redirectTo=${encodeURIComponent(backUrl)}`
+    );
+  } catch (err) {
+    console.error("Error deleteIngredient:", err);
+    const errorMsg = "Error interno del servidor al borrar el ingrediente.";
+    return res.redirect(
+      `/editerroringredient?message=${encodeURIComponent(
+        errorMsg
+      )}&redirectTo=${encodeURIComponent(backUrl)}`
+    );
+  }
+}  
 //Miguel Angel part
 
 //End of Miguel Angel part
