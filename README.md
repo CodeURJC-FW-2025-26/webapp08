@@ -151,6 +151,7 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
 
 
 ## Práctica 2 — Aplicación web del lado del servidor con Node.js
+
 ### Resumen
 Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo de platos (Plate) y sus ingredientes (Ingredient). Implementa creación, edición, borrado, paginación, filtros, subida de imágenes (multer), páginas intermedias de confirmación y páginas de error reutilizando partials (header/footer).
 
@@ -160,53 +161,69 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 - Browser moderno (Chrome/Firefox)
 
 ### Instalación y ejecución (comandos)
+
 **Desde la raíz del repositorio:**
+
 **1.Instalar Node.js en el dispositivo**
+
 **2.Instalar Nodemon en el dispositivo**
+
 **3.Instalar MongoDB Compass en el dispositivo**
+
 **4. Instalar dependencias**: npm install
+
 **5.Preparar carpeta de uploads (si usas UPLOAD_PATH)**: mkdir -p uploads
+
 **6.Inicializar seed (si tienes seed separado):** npm run seed
+
 **7.Ejecutar en modo desarrollo:** npm run dev
 
 ### Estructura y descripción de ficheros (responsabilidad de cada uno)
 **- app.js:** Inicializa express, configura views (mustache), express.urlencoded, method-override, static para public/uploads, conecta con MongoDB, monta routers (/ y /plates), arranca servidor.
+
 **- package.json:** Dependencias y scripts (dev, start).
+
 **- models/Plate.js:** Esquema Mongoose del modelo Plate. Contiene campos típicos:
-    - title (String, unique, requerido)
-    - type (String)
-    - description (String)
-    - price (Number)
-    - duration (Number)
-    - images (Array de strings con rutas)
-    - order, createdAt, allergens (Array), ingredients (Array de refs a Ingredient o         subdocumentos según implementación)
-    - Responsabilidad: definir estructura de plato, validaciones a nivel BD (unique en       título).
+- title (String, unique, requerido)
+- type (String)
+- description (String)
+- price (Number)
+- duration (Number)
+- images (Array de strings con rutas)
+- order, createdAt, allergens (Array), ingredients (Array de refs a Ingredient o         subdocumentos según implementación)
+- Responsabilidad: definir estructura de plato, validaciones a nivel BD (unique en       título).
+
 **- models/Ingredient.js:** Esquema Mongoose del modelo Ingredient. Campos habituales:
-    - name (String, requerido)
-    - description (String)
-    - image (String con ruta)
-    - Responsabilidad: almacenar ingredientes como documentos independientes (si los         usas como refs).
+- name (String, requerido)
+- description (String)
+- image (String con ruta)
+- Responsabilidad: almacenar ingredientes como documentos independientes (si los         usas como refs).
+
 **- models/Ingredient.js:** Lógica del servidor: listados paginados, filtros (searchName, searchType, searchIngredients), creación, edición, borrado de plates, creación/edición/borrado de ingredients, manejo de errores, redirecciones a páginas de confirmación/error (query params).
-    - Validaciones servidor: comprueba duplicados (title), procesa req.files,                construye datos para las vistas.
-    - Expone funciones que usa routes/plates.js.
+- Validaciones servidor: comprueba duplicados (title), procesa req.files,                construye datos para las vistas.
+- Expone funciones que usa routes/plates.js.
+
 **- routes/plates.js:** Define rutas relacionadas con Plate y Ingredient. Por ejemplo:
-    - GET / -> listPlates
-    - GET /plates/new -> showNewForm
-    - GET /plates/:id -> showPlate
-    - GET /plates/:id/edit -> showEditForm
-    - PUT /plates/:id -> updatePlate
-    - DELETE /plates/:id -> deletePlate
-    - POST /plates/:id/ingredients -> addIngredient
-    - GET /plates/:plateId/ingredients/:ingId/edit -> editIngredientForm
-    - PUT /plates/:plateId/ingredients/:ingId -> updateIngredient
-    - DELETE /plates/:plateId/ingredients/:ingId -> deleteIngredient
-    - Rutas especiales para confirmación / error: p.ej. /confirmation, /error o rutas        con nombres específicos que renderizan vistas de confirmación/error.
+- GET / -> listPlates
+- GET /plates/new -> showNewForm
+- GET /plates/:id -> showPlate
+- GET /plates/:id/edit -> showEditForm
+- PUT /plates/:id -> updatePlate
+- DELETE /plates/:id -> deletePlate
+- POST /plates/:id/ingredients -> addIngredient
+- GET /plates/:plateId/ingredients/:ingId/edit -> editIngredientForm
+- PUT /plates/:plateId/ingredients/:ingId -> updateIngredient
+- DELETE /plates/:plateId/ingredients/:ingId -> deleteIngredient
+- Rutas especiales para confirmación / error: p.ej. /confirmation, /error o rutas        con nombres específicos que renderizan vistas de confirmación/error.
+
 **- views/*.mustache:** Plantillas mustache usadas por res.render(...). Vistas que tienes:
-    - main.mustache (listado / home)
-    - new.mustache (formulario creación / edición — reutilizado)
-    - confirmation.mustache, confirmdeleteplate.mustache, confirmupdateplate.mustache        (páginas intermedias de confirmación)
-    - create_confirmation_ingredient.mustache, create_error_ingredient.mustache,             delete_confirmation_ingredient.mustache, etc. (páginas de confirmación/errores         específicas para ingredientes)
-    - error.mustache, errorplate.mustache (páginas de error genéricas)
-    - views/partials/header.mustache y footer.mustache (partials reutilizados; deben        mantener estilo consistente)
+- main.mustache (listado / home)
+- new.mustache (formulario creación / edición — reutilizado)
+- confirmation.mustache, confirmdeleteplate.mustache, confirmupdateplate.mustache        (páginas intermedias de confirmación)
+- create_confirmation_ingredient.mustache, create_error_ingredient.mustache,             delete_confirmation_ingredient.mustache, etc. (páginas de confirmación/errores         específicas para ingredientes)
+- error.mustache, errorplate.mustache (páginas de error genéricas)
+- views/partials/header.mustache y footer.mustache (partials reutilizados; deben        mantener estilo consistente)
+
 **- public/css/Style.css:** Estilos (navbar, tarjetas, grid, paginación, etc.). Responsabilidad: definir apariencia global y clases como .plate-card, .contact-card, .btn-create, .hero-img, .category-pills, etc.
+
 **- seed/seed_plates.js:** Scripts para insertar datos de muestra en la BD si está vacía.
