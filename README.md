@@ -149,3 +149,6 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
   https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/NewElementPage.html
 
 
+
+## Práctica 2 — Aplicación web del lado del servidor con Node.js
+
