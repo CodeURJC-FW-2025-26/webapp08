@@ -52,11 +52,6 @@ const plateValidators = [
   // ---------- custom validator to require image(s) ----------
   // Note: multer must run BEFORE in the chain (upload.array) so req.files exists.
   body("plateImage").custom((value, { req }) => {
-    // If we are in edit mode and you want to allow keeping the old image, adjust here:
-    const editing =
-      req.query._editing === "1" || req.body._editing === "1" || false;
-    if (editing) return true; // do not require a new image during editing if using this convention
-
     // for creation: require at least one uploaded file (multer uses req.files when it's an array)
     if (!req.files || req.files.length === 0) {
       throw new Error("Debes subir al menos una imagen para el plato.");
