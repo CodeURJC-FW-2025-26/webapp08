@@ -82,7 +82,53 @@ router.put(
 router.delete("/plates/:id", platesController.deletePlate);
 
 //Miguel Angel part
+// ingredients: add, delete, edit
+router.post(
+  "/plates/:id/ingredients",
+  upload.single("ingredientImage"),
+  platesController.addIngredient
+);
 
+router.delete(
+  "/plates/:plateId/ingredients/:ingId",
+  platesController.deleteIngredient
+);
+
+// Route to SHOW the edit ingredient form (ADDED)
+router.get(
+  "/plates/:plateId/ingredients/:ingId/edit",
+  platesController.editIngredientForm
+);
+
+router.put(
+  "/plates/:plateId/ingredients/:ingId",
+  upload.single("ingredientImage"),
+  platesController.updateIngredient
+);
+
+// Route to show the confirmation page for creating an ingredient (ADDED)
+router.get(
+  "/createconfirmationingredient",
+  platesController.showConfirmationPageCreate
+);
+
+// Route to show the confirmation page for editing an ingredient (ADDED)
+router.get(
+  "/editconfirmationingredient",
+  platesController.showConfirmationPageEdit
+);
+
+// Route to show the confirmation page for deleting an ingredient (ADDED)
+router.get(
+  "/deleteconfirmationingredient",
+  platesController.showConfirmationPageDelete
+);
+
+// Route to SHOW the error page when creating an ingredient (ADDED)
+router.get("/createerroringredient", platesController.showErrorPageCreate);
+
+// Route to SHOW the error page when editing an ingredient (ADDED)
+router.get("/editerroringredient", platesController.showErrorPageEdit);
 //Enf of Miguel Angel part
 
 
