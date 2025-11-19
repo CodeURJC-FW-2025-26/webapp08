@@ -254,7 +254,10 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 Durante esta práctica, me encargué del desarrollo de las páginas de error y de confirmación asociadas a la edición y al borrado de platos. Implementé las plantillas Mustache de los platos, responsables de mostrar los mensajes de error cuando la operación no puede completarse correctamente, así como las pantallas de confirmación cuando la edición o el borrado se realizan con éxito. Además, adapté el platesController para integrar estas vistas en el flujo de la aplicación, ajustando la lógica necesaria para que, en función del resultado de la operación, se renderizasen los mensajes adecuados y se mantuviera la coherencia con el resto de funcionalidades del proyecto.
 
 **Commits más significativos:**
-
+1. confirmdeletreplate d0aaabd1b41529f51ea7c40ea538a6fac9bd8b7c
+2. confirmupdateplate 62ba3fea6f502ae6d0309b2caf13625cf468ec3a
+3. errorplate.mustache 0b05050298a3f5e91fcc2a396166494df2edf5b7
+4. platesController modificación 3ef4cfa0d955f2a5c6b3ab42b55817362b38651f
 **Ficheros en los que más he participado:**
 - errorplate.mustache
 - confirmupdateplate.mustache
