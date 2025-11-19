@@ -474,7 +474,21 @@ const backUrl = `/plates/${req.params.id}`;
     // check duplicate ingredient in plate (search by name)
     // first populate current ingredients to compare names
     //Miguel Angel part
-
+    await plate.populate("ingredients").execPopulate?.(); // in Mongoose 6 execPopulate doesn't exist; use next line:
+    const populatedPlate = await Plate.findById(req.params.id)
+      .populate("ingredients")
+      .lean();
+    const isDuplicate = (populatedPlate.ingredients || []).some(
+      (ing) => ing.name.toLowerCase() === name.trim().toLowerCase()
+    );
+    if (isDuplicate) {
+      const errorMsg = `Error: El ingrediente con el nombre "${name.trim()}" ya está añadido a este plato.`;
+      return res.redirect(
+        `/createerroringredient?message=${encodeURIComponent(
+          errorMsg
+        )}&redirectTo=${encodeURIComponent(backUrl)}`
+      );
+    }
     //End of Miguel Angel part
     const imagePath =
       req.file && req.file.filename ? "/uploads/" + req.file.filename : "";
