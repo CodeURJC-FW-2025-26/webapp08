@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{{plate.title}} - ZenTao</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/Style.css">
+</head>
+<body>
+  {{> header}}
+
+  <div class="hero-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">ZenTao Buffet</div>
+    <img src="/images/assets_task_01k71v35kefkh9tzb07k4pr14h_1759924941_img_1.webp" alt="ZenTao Buffet" class="img-fluid w-100">
+  </div>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="plate-card-detail p-4">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-5">
+              <img src="{{#plate.images}}{{.}}{{/plate.images}}{{^plate.images}}/images/default-plate.jpg{{/plate.images}}" alt="{{plate.title}}" class="img-fluid rounded-zen shadow-sm">
+            </div>
+            <div class="col-md-7">
+              <div class="plate-card-body">
+                <div class="plate-type">{{plate.type}}</div>
+                <h3 class="plate-title">{{plate.title}}</h3>
+                <div class="plate-price">{{plate.price}} €</div>
+                <div class="plate-date">Fecha de incorporación: {{plate.createdAtFormatted}}</div>
+                <p class="plate-description">{{plate.description}}</p>
+                <div class="plate-duration">Tiempo de preparación: {{plate.duration}} {{#plate.duration}}min{{/plate.duration}}{{^plate.duration}}---{{/plate.duration}}</div>
+                <div class="plate-allergen">Alérgenos: {{#plate.allergens}}{{.}} {{/plate.allergens}}{{^plate.allergens}}---{{/plate.allergens}}</div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <section class="mt-3">
+              
+            {{#plate.ingredients.length}}
+              <!-- SI hay ingredientes -->
+              <h4 class="text-zen mb-3">Ingredientes principales</h4>
+            {{/plate.ingredients.length}}
+
+            {{^plate.ingredients.length}}
+              <!-- SI NO hay ingredientes -->
+              <h4 class="text-zen mb-3">Aún no hay ingredientes</h4>
+            {{/plate.ingredients.length}}
+
+            <div id="ingredientsGrid" class="row g-3">
+
+              {{#plate.ingredients}}
+                <div class="col-6 col-md-4 col-lg-3 ing-item">
+                  <div class="plate-card text-center p-2">
+                    <img src="{{#image}}{{image}}{{/image}}{{^image}}/images/default-ingredient.jpg{{/image}}" alt="{{name}}" class="ingredient-img">
+                    <div class="ingredient-name mt-2"><em><strong>{{name}}</strong></em></div>
+                    <div class="ingredient-desc">{{description}}</div>
+                    <!-- BOTONES DE EDITAR Y BORRAR MODIFICADOS -->
+                    <div class="mt-2">
+                      <button class="btn btn-create btn-sm me-1 btn-edit-ingredient" 
+                        data-plate-id="{{plateId}}" 
+                        data-ingredient-id="{{_id}}">
+                        Editar
+                      </button>
+                      <button class="btn btn-create btn-sm btn-delete-ingredient" 
+                         data-plate-id="{{plateId}}" 
+                         data-ingredient-id="{{_id}}">
+                         Borrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              {{/plate.ingredients}}
+            </div>
+          </section>
+
+          <hr class="my-4">
+          <!-- Formulario para añadir ingrediente (cliente) MODIFICADO ENTERO-->
+          <section class="mt-4">
+          <h4 class="text-zen mb-3">Añadir nuevo ingrediente</h4>
+            <form id="addIngredientForm" 
+              method="POST" 
+              action="/plates/{{plate._id}}/ingredients" 
+              enctype="multipart/form-data" 
+              novalidate>
+              <div class="mb-3">
+                <label for="ingredientName" class="form-label"><strong>Nombre del ingrediente:</strong></label>
+                <input type="text" name="name" id="ingredientName" class="form-control" placeholder="Ej: Queso crema" required>
+              </div>
+              <div class="mb-3">
+                <label for="ingredientDesc" class="form-label"><strong>Descripción del ingrediente:</strong></label>
+                <input type="text" name="description" id="ingredientDesc" class="form-control" placeholder="Descripción del ingrediente" required>
+              </div>
+              <div class="mb-3" style="border: 1px dashed #ddd; padding:10px; border-radius:6px;">
+                <label for="ingredientImage" class="form-label">
+                  <strong>Imagen del ingrediente:</strong>
+                </label>
+                <small class="text-muted">Arrastra la imagen aquí o haz clic para seleccionar.</small>
+
+                <!-- INPUT -->
+                <input
+                  type="file"
+                  name="ingredientImage"
+                  id="ingredientImage"
+                  class="form-control"
+                  accept="image/*"
+                  required
+                >
+
+                <!-- PREVIEW -->
+                <div id="ingredientImagePreview" class="mt-3 d-none">
+                  <img
+                    id="ingredientImagePreviewImg"
+                    src=""
+                    alt="Previsualización"
+                    class="img-fluid rounded-zen shadow"
+                    style="max-width: 200px;"
+                  >
+
+                  <div class="mt-2">
+                    <button
+                      type="button"
+                      class="btn btn-create btn-sm"
+                      id="removeIngredientImageBtn"
+                    >
+                      Quitar imagen
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-create">Crear</button>
+              </div>
+            </form>
+          </section>
+
+          <div class="text-center mt-5">
+            <a class="btn btn-create me-2" href="/plates/{{plate._id}}/edit">Editar</a>
+            <button id="btnDeletePlate" class="btn btn-create me-2" data-plate-id="{{plate._id}}">Borrar</button>
+            <a href="/" class="btn btn-create">Volver a página principal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{> footer}}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/ingredient.js"></script>
+  <script src="/js/detail.js"></script>  
+</body>
+</html>
