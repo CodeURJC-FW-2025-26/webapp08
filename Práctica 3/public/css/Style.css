@@ -536,12 +536,8 @@ body {
   font-weight: 600;
 }
 
-/* ================================
-   IMAGE DROP AREA (Práctica 3)
-   ================================ */
-
 .image-drop-area {
-  border: 2px dashed #d4af37;        /* dorado suave */
+  border: 2px dashed #d4af37;
   border-radius: 8px;
   padding: 20px;
   text-align: center;
@@ -553,39 +549,37 @@ body {
 .image-drop-area p {
   margin: 0;
   font-size: 0.95rem;
-  color: #6c757d; /* gris bootstrap */
+  color: #6c757d; /* bootstrap gray */
 }
 
-/* Hover normal */
+/* Normal hover */
 .image-drop-area:hover {
   background-color: rgba(212, 175, 55, 0.08);
 }
 
-/* Estado cuando se arrastra un archivo encima */
+/* State when a file is dragged over */
 .image-drop-area.drag-over {
   background-color: rgba(212, 175, 55, 0.15);
   border-color: #b8962e;
 }
 
-/* Ajuste del input file dentro del drop area */
+/* File input adjustment inside the drop area */
 .image-drop-area input[type="file"] {
   margin-top: 10px;
 }
 
-/* Preview de imagen */
+/* Image preview */
 #imagePreview img {
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Botón eliminar imagen (usa mismo estilo que btn-create) */
+/* Remove image button (uses same style as btn-create) */
 #removeImageBtn {
   margin-left: 8px;
 }
 
-/* ==========================
-   Ajustes preview dentro del drop zone
-========================== */
+/* Preview adjustments inside the drop zone */
 
 .image-preview img {
   max-width: 220px;
@@ -596,6 +590,5 @@ body {
 .current-image {
   max-width: 180px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
-
