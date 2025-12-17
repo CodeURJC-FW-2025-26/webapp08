@@ -1,0 +1,46 @@
+<footer class="footer mt-4">
+
+  <!-- Modal global (usado para AJAX, errores, confirmaciones…) -->
+  <div class="modal fade" id="globalModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" id="globalModalContent">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="globalModalTitle">Procesando...</h5>
+          <!-- ocultamos el close nativo por defecto (lo controlamos desde JS) -->
+          <button id="modalHeaderClose" type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <div class="modal-body" id="globalModalBody">
+          <div id="modalSpinner" class="text-center my-3" style="display:none;">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+            <div class="mt-2">Procesando, espere...</div>
+          </div>
+
+          <div id="modalMessage"></div>
+        </div>
+
+        <!-- footer oculto hasta que JS lo muestre. El botón primario usa tu clase 'btn-create'. -->
+        <div class="modal-footer" id="globalModalFooter" style="display:none;">
+          <a id="modalPrimaryBtn" class="btn btn-create" href="#">Aceptar</a>
+          <!-- este botón de cierre queda oculto por defecto -->
+          <button id="modalDefaultClose" type="button" class="btn btn-create d-none" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts de práctica 3 -->
+  <script src="/js/new-plate.js"></script>
+  <script src="/js/infinite-scroll.js"></script>
+
+  <!-- Footer real -->
+  <div class="container text-center mt-3">
+    <p>&copy; 2025 ZenTao Buffet. Todos los derechos reservados.</p>
+  </div>
+</footer>
+</body>
+</html>
