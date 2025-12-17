@@ -450,3 +450,28 @@ Aplicación web (Node + Express + MongoDB + Mustache + Ajax) que gestiona un cat
 - controller/platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/controllers/platesController.js
 - public/js/new-plate.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/new-plate.js
 - css https://github.com/CodeURJC-FW-2025-26/webapp08/commit/09ab3a5071810f680176b7d8c57302c95f3b078b
+
+Participación de Miguel Ángel Abián Arienza
+Tareas realizadas:
+
+Redacción del archivo README del proyecto.
+Realización de las validaciones de la página de detalle de la entidad secundaria con AJAX, crear elemento de la entidad secundaria, editar elemento de la entidad secundaria y borrar elemento de la entida secundaria.
+Realizacion del archivo ingredient.js de la carpeta public.
+Revisión de algunas partes del código y colaboración en las discusiones sobre cambios del mismo.
+Commits más significativos:
+
+Redacción y modificación del readme principal. 
+Cambios en el formulario de añadir ingrediente y los botones de borrar y editar de la entidad secundaria en detail.mustache.
+Modificación del archivo platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/commit/f7a7039595cb0a03763b39814343e399daa12e53
+Modificación del archivo plate.js. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/af260fc5d6e814112de92fbdaeb85723f4ca6e5b
+Archivo ingredient.js (carpeta public). https://github.com/CodeURJC-FW-2025-26/webapp08/commit/7774b989e6d1431b52192126654b1902fe7d22d5
+Archivos:
+README.ME https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
+
+detail.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%202/views/detail.mustache
+
+plates.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%203/routes/plates.js
+
+platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%203/controllers/platesController.js
+
+ingredient.js (carpeta public) https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%203/public/js/ingredientmanagement.js
