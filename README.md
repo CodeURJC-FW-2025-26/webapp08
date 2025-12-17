@@ -147,8 +147,12 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
   https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
 2. NewElementPage.html 
   https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/NewElementPage.html
+<br>
+<br>
 
-
+---
+<br>
+<br>
 
 ## Práctica 2 — Aplicación web del lado del servidor con Node.js
 
@@ -311,8 +315,12 @@ Durante esta práctica, me encargué del desarrollo de las páginas de error y d
 
   ### Vídeo en Youtube:
   https://youtu.be/NTfbOREA2Bk
+<br>
+<br>
 
-
+---
+<br>
+<br>
 
 ## Práctica 3 — Mejora de la experiencia del usuario con JavaScript
 
