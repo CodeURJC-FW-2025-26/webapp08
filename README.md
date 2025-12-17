@@ -85,8 +85,8 @@ https://github.com/CodeURJC-FW-2025-26/webapp08/commit/827d576969bf79d6c17ea74da
 
 **Ficheros en los que más he participado:**
 - README.md https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
-- MainPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/MainPage.html
-- Style.css (poco) https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Style.css
+- MainPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/MainPage.html
+- Style.css (poco) https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/Style.css
 
 ### Participación de Ahmed Ehab
 **Tareas realizadas:**
@@ -105,11 +105,11 @@ https://github.com/CodeURJC-FW-2025-26/webapp08/commit/827d576969bf79d6c17ea74da
 5. Incluir la linea del javascript de bootstrap para que funcione el hamburguesa. https://github.com/CodeURJC-FW-2025-26/webapp08/commit/85ec544a5cdc6bee9fcb8c5d0e45911c9731a3af
 
 **Ficheros en los que más he participado:**
-- Style.css https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Style.css
-- MainPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/MainPage.html
-- Images https://github.com/CodeURJC-FW-2025-26/webapp08/tree/main/images
-- NewElementPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/NewElementPage.html
-- DetailPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/DetailPage.html
+- Style.css https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/Style.css
+- MainPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/MainPage.html
+- Images https://github.com/CodeURJC-FW-2025-26/webapp08/tree/main/Pr%C3%A1ctica%201/images
+- NewElementPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/NewElementPage.html
+- DetailPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/DetailPage.html
 
 ### Participación de Íñigo Pérez
 **Tareas realizadas:**
@@ -127,9 +127,9 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
    https://github.com/CodeURJC-FW-2025-26/webapp08/commit/868efa8d41fe5308814d2bb4593f348b67cae635
 
 **Ficheros en los que más he participado:**
-- DetailPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/DetailPage.html
-- Images https://github.com/CodeURJC-FW-2025-26/webapp08/tree/main/images
-- Style.css https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Style.css
+- DetailPage.html https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/DetailPage.html
+- Images https://github.com/CodeURJC-FW-2025-26/webapp08/tree/main/Pr%C3%A1ctica%201/images
+- Style.css https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/Style.css
 
 ### Participación de Miguel Ángel Abián Arienza
 **Tareas realizadas:**
@@ -146,7 +146,7 @@ Durante esta práctica, me encargué del desarrollo completo de la página de de
 1. README.md
   https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
 2. NewElementPage.html 
-  https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/NewElementPage.html
+  https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%201/NewElementPage.html
 
 
 
@@ -243,8 +243,8 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 4. Pequeños ajustes en los códigos, que esté bien tabulado y que todo esté en inglés. (No está subido por mi la versión final de los códigos) https://github.com/CodeURJC-FW-2025-26/webapp08/commit/b337347fffe73e78d614655cc4433417704c7f3d 
 
 **Ficheros en los que más he participado:**
-- platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/controller/platesController.js
-- plates.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/routes/plates.js
+- platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/controller/platesController.js
+- plates.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/routes/plates.js
 - README https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
 
 ### Participación de Ahmed Ehab
@@ -264,11 +264,11 @@ Aplicación web (Node + Express + MongoDB + Mustache) que gestiona un catálogo 
 6. Elaboracion detallada de la estructura "Error.mustache". https://github.com/CodeURJC-FW-2025-26/webapp08/commit/37e23b171bf0e56f7179c901ade2c4eddbb62f00
 
 **Ficheros en los que más he participado:**
-- plateController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/controller/platesController.js
-- PLate.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/models/Plate.js
-- Ingredients.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/models/Ingredient.js
-- Confirmation.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/confirmation.mustache
-- Error.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/error.mustache
+- plateController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/controller/platesController.js
+- PLate.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/models/Plate.js
+- Ingredients.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/models/Ingredient.js
+- Confirmation.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/views/confirmation.mustache
+- Error.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/views/error.mustache
 
 ### Participación de Íñigo Pérez
 **Tareas realizadas:**
@@ -281,10 +281,10 @@ Durante esta práctica, me encargué del desarrollo de las páginas de error y d
 4. platesController modificación 3ef4cfa0d955f2a5c6b3ab42b55817362b38651f
 
 **Ficheros en los que más he participado:**
-- errorplate.mustache
-- confirmupdateplate.mustache
-- confirmdeleteplate.mustache
-- platesController
+- errorplate.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%202/views/errorplate.mustache
+- confirmupdateplate.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%202/views/confirmupdateplate.mustache
+- confirmdeleteplate.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%202/views/confirmdeleteplate.mustache
+- platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/controller/platesController.js
 
 
 ### Participación de Miguel Ángel Abián Arienza
@@ -304,15 +304,10 @@ Durante esta práctica, me encargué del desarrollo de las páginas de error y d
 
 **Ficheros en los que más he participado:**
 - README.ME https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/README.md
-- DetailPage.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/DetailPage.html
-- routers.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/routes/plates.js
-- platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/controller/platesController.js
-- createconfirmationingredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/createconfirmationingredient.mustache
-- editconfirmationingredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editconfirmationingredient.mustache
-- deleteconfirmationingredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/deleteconfirmationingredient.mustache
-- editingredientform.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editingredientform.mustache
-- createerroringredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/createerroringredient.mustache
-- editerroringredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/views/editerroringredient.mustache
+- detail.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%202/views/detail.mustache
+- plates.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/routes/plates.js
+- platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%202/controller/platesController.js
+- createconfirmationingredient.mustache https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%202/views/createconfirmationingredient.mustache
 
   ### Vídeo en Youtube:
   https://youtu.be/NTfbOREA2Bk
