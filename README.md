@@ -351,9 +351,28 @@ Aplicación web (Node + Express + MongoDB + Mustache + Ajax) que gestiona un cat
 **7.Ejecutar en modo desarrollo:** npm run dev
 
 ### Estructura y descripción de ficheros (responsabilidad de cada uno)
-**- app.js:** Inicializa express, configura views (mustache), express.urlencoded, method-override, static para public/uploads, conecta con MongoDB, monta routers (/ y /plates), arranca servidor.
+**- app.js:** Inicializa Express, configura Mustache (views), body parsers, method-override, static para /public (y /uploads si corresponde), conecta a MongoDB y monta rutas (/ y /plates). Define middlewares globales y arranca servidor.
 
 **- package.json:** Dependencias y scripts (dev, start).
+
+**- controllers/platesController.js:** Lógica del servidor: listados, filtros, validaciones de servidor (títulos únicos, campos obligatorios), manejo de uploads con multer, borrado de ficheros en disco (con fs.unlinkSync/async checks), creación/edición/borrado de ingredientes, respuestas JSON para llamadas AJAX.
+
+**- public/js/new-plate.js:** 
+- Validación en tiempo real y pre-submit del formulario de creación/edición de platos.
+- Check AJAX de título disponible (debounce).
+- Intercepta el submit para enviar via AJAX (si procede), muestra modal de procesamiento / errores / éxito.
+- Previsualización de imagen al crear, botón para eliminar imagen seleccionada; previsualización también al editar (si se selecciona nueva imagen), capaz de eliminar nueva imagen y de gestionar el caso “editar sin imagen” cuando el back-end permite removeImage.
+
+**- public/js/ingredient.js:**
+- Gestión completa de ingredientes: añadir (AJAX), editar en sección completa (carga por AJAX del ingrediente en una sección), eliminar (AJAX con manejo 404 — si otro navegador ya lo borró), validaciones cliente (nombre/descripcion), comprobación duplicados por AJAX (debounced), previsualización de imagen al crear ingrediente.
+- Edición en sección completa que trae el formulario en línea (spinner -> cargar -> formulario).
+- Previsualización de imagen cuando editas y seleccionas una nueva imagen (se muestra preview).
+- Botón para eliminar imagen actual en edición (marca removeImage hidden input).
+- Botón para eliminar imagen seleccionada nueva (quita preview y limpia input file).
+- Manejo de 404 en operaciones DELETE/PUT (si ingrediente ya fue borrado en otra pestaña).
+- Compatibilidad con forms tradicionales (convierte forms/links a botones AJAX si procede).
+
+**public/js/infinite-scroll.js:** Implementación del scroll infinito.
 
 **- models/Plate.js:** Esquema Mongoose del modelo Plate. Contiene campos típicos:
 - title (String, unique, requerido)
@@ -365,39 +384,52 @@ Aplicación web (Node + Express + MongoDB + Mustache + Ajax) que gestiona un cat
 - order, createdAt, allergens (Array), ingredients (Array de refs a Ingredient o         subdocumentos según implementación)
 - Responsabilidad: definir estructura de plato, validaciones a nivel BD (unique en       título).
 
-**- models/Ingredient.js:** Esquema Mongoose del modelo Ingredient. Campos habituales:
-- name (String, requerido)
-- description (String)
-- image (String con ruta)
-- Responsabilidad: almacenar ingredientes como documentos independientes (si los         usas como refs).
-
 **- models/Ingredient.js:** Lógica del servidor: listados paginados, filtros (searchName, searchType, searchIngredients), creación, edición, borrado de plates, creación/edición/borrado de ingredients, manejo de errores, redirecciones a páginas de confirmación/error (query params).
 - Validaciones servidor: comprueba duplicados (title), procesa req.files,                construye datos para las vistas.
 - Expone funciones que usa routes/plates.js.
 
 **- routes/plates.js:** Define rutas relacionadas con Plate y Ingredient. Por ejemplo:
-- GET / -> listPlates
-- GET /plates/new -> showNewForm
-- GET /plates/:id -> showPlate
-- GET /plates/:id/edit -> showEditForm
-- PUT /plates/:id -> updatePlate
-- DELETE /plates/:id -> deletePlate
-- POST /plates/:id/ingredients -> addIngredient
-- GET /plates/:plateId/ingredients/:ingId/edit -> editIngredientForm
-- PUT /plates/:plateId/ingredients/:ingId -> updateIngredient
-- DELETE /plates/:plateId/ingredients/:ingId -> deleteIngredient
-- Rutas especiales para confirmación / error: p.ej. /confirmation, /error o rutas        con nombres específicos que renderizan vistas de confirmación/error.
+- GET / -> listPlates - listado paginado
+- GET /plates/new -> showNewForm - formulario nuevo plato
+- GET /plates/:id -> showPlate - mostrar plato (multer + validadores)
+- GET /plates/:id/edit -> showEditForm - editar plato
+- PUT /plates/:id -> updatePlate - actualizar plato
+- DELETE /plates/:id -> deletePlate - eliminar plato
+- POST /plates/:id/ingredients -> addIngredient - añadir ingrediente
+- GET /plates/:plateId/ingredients/:ingId/edit -> editIngredientForm - fromulario de editar ingrediente
+- PUT /plates/:plateId/ingredients/:ingId -> updateIngredient - actualizar ingrediente
+- DELETE /plates/:plateId/ingredients/:ingId -> deleteIngredient - eliminar ingrediente
+- Rutas auxiliares: /api/... para checks AJAX (por ejemplo check-title, check-ingredient-name)
 
 **- views/*.mustache:** Plantillas mustache usadas por res.render(...). Vistas que tienes:
 - main.mustache (listado / home)
 - new.mustache (formulario creación / edición — reutilizado)
-- confirmation.mustache, confirmdeleteplate.mustache, confirmupdateplate.mustache        (páginas intermedias de confirmación)
-- create_confirmation_ingredient.mustache, create_error_ingredient.mustache,             delete_confirmation_ingredient.mustache, etc. (páginas de confirmación/errores         específicas para ingredientes)
-- error.mustache, errorplate.mustache (páginas de error genéricas)
+- detail.mustache (pagina de detalle del plato)
 - views/partials/header.mustache y footer.mustache (partials reutilizados; deben        mantener estilo consistente)
 
 **- public/css/Style.css:** Estilos (navbar, tarjetas, grid, paginación, etc.). Responsabilidad: definir apariencia global y clases como .plate-card, .contact-card, .btn-create, .hero-img, .category-pills, etc.
 
 **- seed/seed_plates.js:** Scripts para insertar datos de muestra en la BD si está vacía.
 
+### Participación de Ahmed Ehab
+**Tareas realizadas:**
+- Creación completa y funcionalidad completa del archivo public/js/infinite-scroll.js
+- Creación y funcionalidad de la mayoría del archivo public/js/new-plate.js
+- Creación y funcionalidad de la mayoría del archivo public/js/detail.js
+- Ayuda en la funcionalidad del archivo public/js/detail.js
+- Adecuación del resto de ficheros .mustache para adecuarse a respuestas AJAX y mejora del archivo controller/platesController.js para que cumpla las funcionalidades pedidas en la práctica 3.
+
+**Commits más significativos:**
+1. Creación del archivo public/js/infinite-scroll.js https://github.com/CodeURJC-FW-2025-26/webapp08/commit/79764dd4805884ae6914fd40ca8438375f7355f0
+2. Creación del archivo public/js/new-plate.js https://github.com/CodeURJC-FW-2025-26/webapp08/commit/3d9017f76307c33a5fdbf800158e986167a5b5ce
+3. Creación del archivo public/js/detail.js https://github.com/CodeURJC-FW-2025-26/webapp08/commit/c4c4529fb4f0a8e2487db934d429a4f82e0898d8
+4. Creación del archivo public/js/ingredients.js https://github.com/CodeURJC-FW-2025-26/webapp08/commit/e9f0dfe6387dd8353817c8bfc168b8a1c25ffe37
+5. Creación del archivo controller/platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/commit/f7a7039595cb0a03763b39814343e399daa12e53
+   
+**Ficheros en los que más he participado:**
+- controller/platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/controllers/platesController.js
+- public/js/new-plate.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/new-plate.js
+- public/js/infinite-scroll.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/infinite-scroll.js
+- public/js/ingredient.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/ingredient.js
+- public/js/detail.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/detail.js
 
