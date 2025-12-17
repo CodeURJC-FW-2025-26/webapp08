@@ -433,3 +433,20 @@ Aplicación web (Node + Express + MongoDB + Mustache + Ajax) que gestiona un cat
 - public/js/ingredient.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/ingredient.js
 - public/js/detail.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/detail.js
 
+
+### Participación de Zhiyang Ni
+**Tareas realizadas:**
+- Creación y elaboración de edit plate
+- Desarrollo de formularios con imagen
+- Revisión del código final.
+- Grabación del vídeo
+-  
+**Commits más significativos:**
+- controller/platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/controllers/platesController.js
+- public/js/new-plate.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/new-plate.js
+- css https://github.com/CodeURJC-FW-2025-26/webapp08/commit/09ab3a5071810f680176b7d8c57302c95f3b078b
+
+**Ficheros en los que más he participado:**
+- controller/platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/controllers/platesController.js
+- public/js/new-plate.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/new-plate.js
+- css https://github.com/CodeURJC-FW-2025-26/webapp08/commit/09ab3a5071810f680176b7d8c57302c95f3b078b
