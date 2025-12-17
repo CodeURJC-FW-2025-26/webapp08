@@ -474,4 +474,61 @@ plates.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%20
 
 platesController.js https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%203/controllers/platesController.js
 
-ingredient.js (carpeta public) https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%203/public/js/ingredientmanagement.js
+ingredient.js (carpeta public) https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Práctica%203/public/js/
+
+
+
+
+
+
+Participación de Íñigo Pérez
+Tareas realizadas:
+Implementación completa de la página de creación de nuevo elemento, incluyendo:
+
+
+Mejora de la validación del formulario en cliente utilizando Bootstrap, sustituyendo las validaciones nativas del navegador.
+
+
+Implementación de validaciones en JavaScript para campos que no pueden validarse únicamente con HTML, mostrando los errores debajo de cada campo de forma consistente.
+
+
+Implementación de validaciones mediante AJAX que requieren información del servidor (como la comprobación de títulos duplicados), integrando los mensajes de error en el propio formulario.
+
+
+Implementación completa de la página de edición de un elemento, reutilizando la lógica de validación de la página de creación:
+
+
+Envío del formulario mediante AJAX.
+
+
+Visualización de un indicador de procesamiento (spinner) mientras se espera la respuesta del servidor.
+
+
+Gestión de errores del servidor mostrando un cuadro de diálogo informativo y cerrable que permite corregir los datos y reenviar el formulario.
+
+
+Redirección automática a la página de detalle del elemento cuando la operación se completa con éxito.
+
+
+Desarrollo de la lógica JavaScript asociada a estas funcionalidades principalmente en los ficheros:
+
+
+public/js/new-plate.js
+
+
+public/js/detail.js
+
+
+Colaboración en la adaptación de plantillas .mustache y ajustes en el controlador para asegurar la correcta comunicación con las peticiones AJAX.
+
+
+
+
+Ficheros en los que más he participado:
+public/js/new-plate.js
+ https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/new-plate.js
+public/js/detail.js
+ https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/public/js/detail.js
+controllers/platesController.js
+ https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/controllers/platesController.js
+ingredientmanagement.js
