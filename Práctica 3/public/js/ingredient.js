@@ -1,33 +1,33 @@
-// public/js/ingredient.js - FULL FILE WITH 404 ERROR HANDLING
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("ingredient.js - Script cargado correctamente");
-
-  //
-  // GLOBAL VARIABLES FOR EDITING CONTROL
-  //
+// public/js/ingredient.js - ARCHIVO COMPLETO CON MANEJO DE ERROR 404
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('ingredient.js - Script cargado correctamente');
+  
+  // ============================================
+  // VARIABLES GLOBALES PARA CONTROL DE EDICIÓN
+  // ============================================
   let isEditing = false;
-  let originalIngredientsHTML = "";
+  let originalIngredientsHTML = '';
   let currentEditIngredientId = null;
   let currentEditPlateId = null;
   let ingredientNameCheckTimeout = null;
   let editNameCheckTimeout = null;
-
-  //
-  // 1. UTILITY FUNCTIONS (SHARED)
-  //
-
-  // 1.1. Show error dialog
+  
+  // ============================================
+  // 1. FUNCIONES UTILITARIAS (COMPARTIDAS)
+  // ============================================
+  
+  // 1.1. Mostrar diálogo de error
   function showErrorDialog(message) {
-    let errorModal = document.getElementById("errorModal");
-
+    let errorModal = document.getElementById('errorModal');
+    
     if (!errorModal) {
-      errorModal = document.createElement("div");
-      errorModal.id = "errorModal";
-      errorModal.className = "modal fade";
-      errorModal.setAttribute("tabindex", "-1");
-      errorModal.setAttribute("aria-labelledby", "errorModalLabel");
-      errorModal.setAttribute("aria-hidden", "true");
-
+      errorModal = document.createElement('div');
+      errorModal.id = 'errorModal';
+      errorModal.className = 'modal fade';
+      errorModal.setAttribute('tabindex', '-1');
+      errorModal.setAttribute('aria-labelledby', 'errorModalLabel');
+      errorModal.setAttribute('aria-hidden', 'true');
+      
       errorModal.innerHTML = `
         <div class="modal-dialog">
           <div class="modal-content">
@@ -44,27 +44,27 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
       `;
-
+      
       document.body.appendChild(errorModal);
     }
-
-    document.getElementById("errorModalMessage").textContent = message;
+    
+    document.getElementById('errorModalMessage').textContent = message;
     const modal = new bootstrap.Modal(errorModal);
     modal.show();
   }
-
-  // 1.2. Show success dialog (SAME STYLE AS ERROR)
-  function showSuccessDialog(message, title = "Éxito") {
-    let successModal = document.getElementById("successModal");
-
+  
+  // 1.2. Mostrar diálogo de éxito (MISMO ESTILO QUE ERROR)
+  function showSuccessDialog(message, title = 'Éxito') {
+    let successModal = document.getElementById('successModal');
+    
     if (!successModal) {
-      successModal = document.createElement("div");
-      successModal.id = "successModal";
-      successModal.className = "modal fade";
-      successModal.setAttribute("tabindex", "-1");
-      successModal.setAttribute("aria-labelledby", "successModalLabel");
-      successModal.setAttribute("aria-hidden", "true");
-
+      successModal = document.createElement('div');
+      successModal.id = 'successModal';
+      successModal.className = 'modal fade';
+      successModal.setAttribute('tabindex', '-1');
+      successModal.setAttribute('aria-labelledby', 'successModalLabel');
+      successModal.setAttribute('aria-hidden', 'true');
+      
       successModal.innerHTML = `
         <div class="modal-dialog">
           <div class="modal-content">
@@ -81,45 +81,41 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
       `;
-
+      
       document.body.appendChild(successModal);
     }
-
-    document.getElementById("successModalLabel").textContent = title;
-    document.getElementById("successModalMessage").textContent = message;
+    
+    document.getElementById('successModalLabel').textContent = title;
+    document.getElementById('successModalMessage').textContent = message;
     const modal = new bootstrap.Modal(successModal);
     modal.show();
   }
-
-  // 1.3. Update "No ingredients" message
+  
+  // 1.3. Actualizar mensaje "No hay ingredientes"
   function updateNoIngredientsMessage() {
-    const ingredientsGrid = document.getElementById("ingredientsGrid");
+    const ingredientsGrid = document.getElementById('ingredientsGrid');
     if (!ingredientsGrid) return;
-
-    const ingredients = ingredientsGrid.querySelectorAll(".ing-item");
-    const titleElement = document.querySelector("section.mt-3 h4.text-zen");
-
+    
+    const ingredients = ingredientsGrid.querySelectorAll('.ing-item');
+    const titleElement = document.querySelector('section.mt-3 h4.text-zen');
+    
     if (ingredients.length === 0 && titleElement) {
-      titleElement.textContent = "Aún no hay ingredientes";
-    } else if (
-      ingredients.length > 0 &&
-      titleElement &&
-      titleElement.textContent === "Aún no hay ingredientes"
-    ) {
-      titleElement.textContent = "Ingredientes principales";
+      titleElement.textContent = 'Aún no hay ingredientes';
+    } else if (ingredients.length > 0 && titleElement && titleElement.textContent === 'Aún no hay ingredientes') {
+      titleElement.textContent = 'Ingredientes principales';
     }
   }
-
-  // 1.4. Add ingredient to DOM (for creation)
+  
+  // 1.4. Añadir ingrediente al DOM (para creación)
   function addIngredientToDOM(ingredientData, plateId) {
-    const ingredientsGrid = document.getElementById("ingredientsGrid");
+    const ingredientsGrid = document.getElementById('ingredientsGrid');
     if (!ingredientsGrid) return;
-
-    const colDiv = document.createElement("div");
-    colDiv.className = "col-6 col-md-4 col-lg-3 ing-item";
+    
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col-6 col-md-4 col-lg-3 ing-item';
     colDiv.innerHTML = `
       <div class="plate-card text-center p-2">
-        <img src="${ingredientData.image || "/images/default-ingredient.jpg"}" 
+        <img src="${ingredientData.image || '/images/default-ingredient.jpg'}" 
              alt="${ingredientData.name}" 
              class="ingredient-img">
         <div class="ingredient-name mt-2">
@@ -127,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
         <div class="ingredient-desc">${ingredientData.description}</div>
         
-        <!-- BUTTONS -->
+        <!-- BOTONES -->
         <div class="mt-2">
           <button class="btn btn-create btn-sm me-1 btn-edit-ingredient" 
                   data-plate-id="${plateId}" 
@@ -143,75 +139,67 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
     `;
-
-    colDiv.style.opacity = "0";
-    colDiv.style.transform = "translateY(20px)";
+    
+    colDiv.style.opacity = '0';
+    colDiv.style.transform = 'translateY(20px)';
     ingredientsGrid.appendChild(colDiv);
-
+    
     setTimeout(() => {
-      colDiv.style.transition = "opacity 0.3s, transform 0.3s";
-      colDiv.style.opacity = "1";
-      colDiv.style.transform = "translateY(0)";
+      colDiv.style.transition = 'opacity 0.3s, transform 0.3s';
+      colDiv.style.opacity = '1';
+      colDiv.style.transform = 'translateY(0)';
     }, 10);
   }
-
-  // 1.5. Reset editing state
+  
+  // 1.5. Resetear estado de edición
   function resetEditState() {
     isEditing = false;
     currentEditIngredientId = null;
     currentEditPlateId = null;
-    originalIngredientsHTML = "";
+    originalIngredientsHTML = '';
   }
-
-  // 1.6. Update specific ingredient in the DOM
+  
+  // 1.6. Actualizar ingrediente específico en el DOM
   function updateSpecificIngredientInDOM(ingredientData) {
-    const ingredientButtons = document.querySelectorAll(
-      ".btn-edit-ingredient, .btn-delete-ingredient"
-    );
-
-    ingredientButtons.forEach((button) => {
-      const ingId = button.getAttribute("data-ingredient-id");
-
+    const ingredientButtons = document.querySelectorAll('.btn-edit-ingredient, .btn-delete-ingredient');
+    
+    ingredientButtons.forEach(button => {
+      const ingId = button.getAttribute('data-ingredient-id');
+      
       if (ingId === ingredientData._id.toString()) {
-        const ingredientItem = button.closest(".ing-item");
+        const ingredientItem = button.closest('.ing-item');
         if (ingredientItem) {
-          // Update the card
-          ingredientItem.querySelector(".ingredient-img").src =
-            ingredientData.image || "/images/default-ingredient.jpg";
-          ingredientItem.querySelector(".ingredient-img").alt =
-            ingredientData.name;
-          ingredientItem.querySelector(".ingredient-name strong").textContent =
-            ingredientData.name;
-          ingredientItem.querySelector(".ingredient-desc").textContent =
-            ingredientData.description;
-
-          console.log("Ingrediente actualizado en DOM:", ingredientData.name);
+          // Actualizar la tarjeta
+          ingredientItem.querySelector('.ingredient-img').src = ingredientData.image || '/images/default-ingredient.jpg';
+          ingredientItem.querySelector('.ingredient-img').alt = ingredientData.name;
+          ingredientItem.querySelector('.ingredient-name strong').textContent = ingredientData.name;
+          ingredientItem.querySelector('.ingredient-desc').textContent = ingredientData.description;
+          
+          console.log('Ingrediente actualizado en DOM:', ingredientData.name);
         }
       }
     });
   }
-
-  // 1.7. Show duplicate name error
+  
+  // 1.7. Mostrar error de nombre duplicado
   function showNameError(inputElement, message) {
-    // Find or create error element
-    let errorElement = inputElement.parentElement.querySelector(
-      ".name-error-message"
-    );
-
+    // Buscar o crear elemento de error
+    let errorElement = inputElement.parentElement.querySelector('.name-error-message');
+    
     if (!errorElement) {
-      errorElement = document.createElement("div");
-      errorElement.className = "name-error-message invalid-feedback";
-      errorElement.style.display = "block";
+      errorElement = document.createElement('div');
+      errorElement.className = 'name-error-message invalid-feedback';
+      errorElement.style.display = 'block';
       inputElement.parentElement.appendChild(errorElement);
     }
-
+    
     errorElement.textContent = message;
-    inputElement.classList.add("is-invalid");
-
-    // Add styles if they do not exist
-    const style = document.createElement("style");
-    if (!document.querySelector("#name-error-styles")) {
-      style.id = "name-error-styles";
+    inputElement.classList.add('is-invalid');
+    
+    // Añadir estilos si no existen
+    const style = document.createElement('style');
+    if (!document.querySelector('#name-error-styles')) {
+      style.id = 'name-error-styles';
       style.textContent = `
         .name-error-message {
           color: #dc3545;
@@ -229,98 +217,83 @@ document.addEventListener("DOMContentLoaded", function () {
       document.head.appendChild(style);
     }
   }
-
-  // 1.8. Clear name error
+  
+  // 1.8. Limpiar error de nombre
   function clearNameError(inputElement = null) {
     if (inputElement) {
-      // Clear only for a specific input
-      const errorElement = inputElement.parentElement.querySelector(
-        ".name-error-message"
-      );
+      // Limpiar solo para un input específico
+      const errorElement = inputElement.parentElement.querySelector('.name-error-message');
       if (errorElement) {
-        errorElement.textContent = "";
-        errorElement.style.display = "none";
+        errorElement.textContent = '';
+        errorElement.style.display = 'none';
       }
-      inputElement.classList.remove("is-invalid");
+      inputElement.classList.remove('is-invalid');
     } else {
-      // Clear all errors
-      const errorElements = document.querySelectorAll(".name-error-message");
-      errorElements.forEach((el) => {
-        el.textContent = "";
-        el.style.display = "none";
+      // Limpiar todos los errores
+      const errorElements = document.querySelectorAll('.name-error-message');
+      errorElements.forEach(el => {
+        el.textContent = '';
+        el.style.display = 'none';
       });
-
-      const invalidInputs = document.querySelectorAll(
-        'input.is-invalid[name="name"], textarea.is-invalid[name="description"]'
-      );
-      invalidInputs.forEach((input) => {
-        input.classList.remove("is-invalid");
+      
+      const invalidInputs = document.querySelectorAll('input.is-invalid[name="name"], textarea.is-invalid[name="description"]');
+      invalidInputs.forEach(input => {
+        input.classList.remove('is-invalid');
       });
     }
   }
-
-  // 1.9. Check ingredient name (duplicates)
-  function checkIngredientName(
-    name,
-    plateId,
-    inputElement,
-    currentIngId = null
-  ) {
-    // Clear previous error
+  
+  // 1.9. Verificar nombre del ingrediente (duplicados) - PARA AÑADIR
+  function checkIngredientName(name, plateId, inputElement, currentIngId = null) {
+    // Limpiar error previo
     clearNameError(inputElement);
-
+    
     if (name.length < 2) return;
-
-    const url = currentIngId
-      ? `/api/plates/${plateId}/check-ingredient-name?name=${encodeURIComponent(
-          name
-        )}&exclude=${currentIngId}`
-      : `/api/plates/${plateId}/check-ingredient-name?name=${encodeURIComponent(
-          name
-        )}`;
-
+    
+    const url = currentIngId 
+      ? `/api/plates/${plateId}/check-ingredient-name?name=${encodeURIComponent(name)}&exclude=${currentIngId}`
+      : `/api/plates/${plateId}/check-ingredient-name?name=${encodeURIComponent(name)}`;
+    
     fetch(url, {
       headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        Accept: "application/json",
-      },
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json'
+      }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.available) {
-          showNameError(inputElement, "Este ingrediente ya existe");
-        }
-      })
-      .catch((error) => {
-        console.error("Error verificando nombre:", error);
-      });
+    .then(response => response.json())
+    .then(data => {
+      if (!data.available) {
+        showNameError(inputElement, 'Este ingrediente ya existe');
+      }
+    })
+    .catch(error => {
+      console.error('Error verificando nombre:', error);
+    });
   }
-
-  //
-  // 2. DELETE INGREDIENT (AJAX) - WITH 404 ERROR HANDLING
-  //
-  document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("btn-delete-ingredient")) {
+  
+  // ============================================
+  // 2. BORRAR INGREDIENTE (AJAX) - CON MANEJO DE ERROR 404
+  // ============================================
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn-delete-ingredient')) {
       e.preventDefault();
-
+      
       const button = e.target;
-      const plateId = button.getAttribute("data-plate-id");
-      const ingId = button.getAttribute("data-ingredient-id");
-      const ingredientItem = button.closest(".ing-item");
-      const ingredientName = ingredientItem
-        ? ingredientItem.querySelector(".ingredient-name strong").textContent
-        : "el ingrediente";
-
-      // 1. CREATE AND SHOW PROCESSING MODAL (CANNOT BE CLOSED)
-      const processingModal = document.createElement("div");
-      processingModal.id = "processingModal_" + Date.now(); // unique ID
-      processingModal.className = "modal fade";
-      processingModal.setAttribute("tabindex", "-1");
-      processingModal.setAttribute("aria-labelledby", "processingModalLabel");
-      processingModal.setAttribute("aria-hidden", "true");
-      processingModal.setAttribute("data-bs-backdrop", "static");
-      processingModal.setAttribute("data-bs-keyboard", "false");
-
+      const plateId = button.getAttribute('data-plate-id');
+      const ingId = button.getAttribute('data-ingredient-id');
+      const ingredientItem = button.closest('.ing-item');
+      const ingredientName = ingredientItem ? ingredientItem.querySelector('.ingredient-name strong').textContent : 'el ingrediente';
+      
+      // 1. CREAR Y MOSTRAR MODAL DE PROCESAMIENTO (NO SE PUEDE CERRAR)
+      const processingModal = document.createElement('div');
+      processingModal.id = 'processingModal_' + Date.now(); // ID único
+      processingModal.className = 'modal fade';
+      processingModal.setAttribute('tabindex', '-1');
+      processingModal.setAttribute('aria-labelledby', 'processingModalLabel');
+      processingModal.setAttribute('aria-hidden', 'true');
+      processingModal.setAttribute('data-bs-backdrop', 'static');
+      processingModal.setAttribute('data-bs-keyboard', 'false');
+      
       processingModal.innerHTML = `
         <div class="modal-dialog">
           <div class="modal-content">
@@ -336,320 +309,291 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
       `;
-
+      
       document.body.appendChild(processingModal);
-
-      // Initialize and show modal
+      
+      // Inicializar y mostrar modal
       const processingModalInstance = new bootstrap.Modal(processingModal, {
-        backdrop: "static",
-        keyboard: false,
+        backdrop: 'static',
+        keyboard: false
       });
       processingModalInstance.show();
-
-      // Disable button
+      
+      // Deshabilitar botón
       const originalText = button.innerHTML;
       button.disabled = true;
-      button.innerHTML =
-        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Borrando...';
-
+      button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Borrando...';
+      
       fetch(`/plates/${plateId}/ingredients/${ingId}`, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          "X-Requested-With": "XMLHttpRequest",
-          Accept: "application/json",
-        },
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept': 'application/json'
+        }
       })
-        .then((response) => {
-          // Restore button
-          button.disabled = false;
-          button.innerHTML = originalText;
-
-          // 2. HIDE AND REMOVE PROCESSING MODAL
-          processingModalInstance.hide();
-
-          // Remove modal from DOM after hiding it
-          setTimeout(() => {
-            if (processingModal.parentNode) {
-              processingModal.parentNode.removeChild(processingModal);
-            }
-            // Clean backdrop if it exists
-            const backdrop = document.querySelector(".modal-backdrop");
-            if (backdrop) backdrop.remove();
-            document.body.classList.remove("modal-open");
-            document.body.style.overflow = "";
-          }, 300);
-
-          // CHECK 404 ERROR (INGREDIENT ALREADY DELETED IN ANOTHER TAB)
-          if (response.status === 404) {
-            // The ingredient no longer exists (probably deleted in another tab)
-            if (ingredientItem) {
-              // Remove the DOM element since it no longer exists on the server
-              ingredientItem.style.transition = "opacity 0.3s, transform 0.3s";
-              ingredientItem.style.opacity = "0";
-              ingredientItem.style.transform = "scale(0.8)";
-
-              setTimeout(() => {
-                ingredientItem.remove();
-                updateNoIngredientsMessage();
-              }, 300);
-            }
-
-            // Show specific message for 404 error
-            showErrorDialog("Error: El ingrediente no existe.");
-            return;
+      .then(response => {
+        // Restaurar botón
+        button.disabled = false;
+        button.innerHTML = originalText;
+        
+        // 2. OCULTAR Y ELIMINAR MODAL DE PROCESAMIENTO
+        processingModalInstance.hide();
+        
+        // Eliminar modal del DOM después de ocultarlo
+        setTimeout(() => {
+          if (processingModal.parentNode) {
+            processingModal.parentNode.removeChild(processingModal);
           }
-
-          if (!response.ok) {
-            return response.json().then((data) => {
-              throw new Error(
-                data.error || `Error ${response.status}: ${response.statusText}`
-              );
-            });
-          }
-          return response.json();
-        })
-        .then((data) => {
-          if (data && data.success && ingredientItem) {
-            // 3. ANIMATE REMOVAL FROM DOM
-            ingredientItem.style.transition = "opacity 0.3s, transform 0.3s";
-            ingredientItem.style.opacity = "0";
-            ingredientItem.style.transform = "scale(0.8)";
-
+          // Limpiar backdrop si existe
+          const backdrop = document.querySelector('.modal-backdrop');
+          if (backdrop) backdrop.remove();
+          document.body.classList.remove('modal-open');
+          document.body.style.overflow = '';
+        }, 300);
+        
+        // VERIFICAR ERROR 404 (INGREDIENTE YA BORRADO EN OTRA PESTAÑA)
+        if (response.status === 404) {
+          // El ingrediente ya no existe (probablemente borrado en otra pestaña)
+          if (ingredientItem) {
+            // Eliminar el elemento del DOM ya que no existe en el servidor
+            ingredientItem.style.transition = 'opacity 0.3s, transform 0.3s';
+            ingredientItem.style.opacity = '0';
+            ingredientItem.style.transform = 'scale(0.8)';
+            
             setTimeout(() => {
               ingredientItem.remove();
               updateNoIngredientsMessage();
-
-              // 4. SHOW SUCCESS MODAL (CAN BE CLOSED)
-              showSuccessDialog(
-                `"${ingredientName}" ha sido borrado correctamente.`,
-                "Borrado completado"
-              );
             }, 300);
-          } else if (data && !data.success) {
-            // 3. SHOW SERVER ERROR
-            showErrorDialog(data.error || "Error al borrar el ingrediente.");
           }
-          // If data is null/undefined (already handled in the 404 block), do nothing
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-
-          // Restore button
-          button.disabled = false;
-          button.innerHTML = originalText;
-
-          // 2. HIDE AND REMOVE PROCESSING MODAL (if it still exists)
-          if (processingModalInstance) {
-            processingModalInstance.hide();
-          }
-
-          // Remove modal from DOM
+          
+          // Mostrar mensaje específico para error 404
+          showErrorDialog('Error: El ingrediente no existe.');
+          return;
+        }
+        
+        if (!response.ok) {
+          return response.json().then(data => {
+            throw new Error(data.error || `Error ${response.status}: ${response.statusText}`);
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data && data.success && ingredientItem) {
+          // 3. ANIMAR ELIMINACIÓN DEL DOM
+          ingredientItem.style.transition = 'opacity 0.3s, transform 0.3s';
+          ingredientItem.style.opacity = '0';
+          ingredientItem.style.transform = 'scale(0.8)';
+          
           setTimeout(() => {
-            if (processingModal.parentNode) {
-              processingModal.parentNode.removeChild(processingModal);
-            }
-            // Clean backdrop if it exists
-            const backdrop = document.querySelector(".modal-backdrop");
-            if (backdrop) backdrop.remove();
-            document.body.classList.remove("modal-open");
-            document.body.style.overflow = "";
+            ingredientItem.remove();
+            updateNoIngredientsMessage();
+            
+            // 4. MOSTRAR MODAL DE ÉXITO (SE PUEDE CERRAR)
+            showSuccessDialog(`"${ingredientName}" ha sido borrado correctamente.`, 'Borrado completado');
           }, 300);
-
-          // 3. SHOW ERROR (but not if we already handled the 404)
-          if (!error.message.includes("404")) {
-            showErrorDialog(`Error: ${error.message}`);
+        } else if (data && !data.success) {
+          // 3. MOSTRAR ERROR DEL SERVIDOR
+          showErrorDialog(data.error || 'Error al borrar el ingrediente.');
+        }
+        // Si data es null/undefined (ya manejado en el bloque 404), no hacer nada
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        
+        // Restaurar botón
+        button.disabled = false;
+        button.innerHTML = originalText;
+        
+        // 2. OCULTAR Y ELIMINAR MODAL DE PROCESAMIENTO (si aún existe)
+        if (processingModalInstance) {
+          processingModalInstance.hide();
+        }
+        
+        // Eliminar modal del DOM
+        setTimeout(() => {
+          if (processingModal.parentNode) {
+            processingModal.parentNode.removeChild(processingModal);
           }
-        });
+          // Limpiar backdrop si existe
+          const backdrop = document.querySelector('.modal-backdrop');
+          if (backdrop) backdrop.remove();
+          document.body.classList.remove('modal-open');
+          document.body.style.overflow = '';
+        }, 300);
+        
+        // 3. MOSTRAR ERROR (pero no si ya manejamos el 404)
+        if (!error.message.includes('404')) {
+          showErrorDialog(`Error: ${error.message}`);
+        }
+      });
     }
   });
-
-  //
-  // 3. ADD INGREDIENT (AJAX) - WITH VALIDATION
-  //
-  const addIngredientForm = document.getElementById("addIngredientForm");
-
+  
+  // ============================================
+  // 3. AÑADIR INGREDIENTE (AJAX) - CON VALIDACIÓN
+  // ============================================
+  const addIngredientForm = document.getElementById('addIngredientForm');
+  
   if (addIngredientForm) {
     const nameInput = addIngredientForm.querySelector('input[name="name"]');
-    const plateId = addIngredientForm.action.match(
-      /\/plates\/([^\/]+)\/ingredients/
-    )[1];
-
-    // 3.1. REAL-TIME NAME VALIDATION
+    const plateId = addIngredientForm.action.match(/\/plates\/([^\/]+)\/ingredients/)[1];
+    
+    // 3.1. VALIDACIÓN EN TIEMPO REAL DE NOMBRE
     if (nameInput) {
-      nameInput.addEventListener("input", function () {
+      nameInput.addEventListener('input', function() {
         clearTimeout(ingredientNameCheckTimeout);
-
+        
         const name = this.value.trim();
         if (name.length < 2) {
           clearNameError(this);
           return;
         }
-
-        // Wait 500ms after the user stops typing
+        
+        // Esperar 500ms después de dejar de escribir
         ingredientNameCheckTimeout = setTimeout(() => {
           checkIngredientName(name, plateId, this);
         }, 500);
       });
-
-      // Also validate on blur
-      nameInput.addEventListener("blur", function () {
+      
+      // También validar al perder el foco
+      nameInput.addEventListener('blur', function() {
         const name = this.value.trim();
         if (name.length >= 2) {
           checkIngredientName(name, plateId, this);
         }
       });
     }
-
-    // 3.2. FORM SUBMISSION
-    addIngredientForm.addEventListener("submit", function (e) {
+    
+    // 3.2. ENVÍO DEL FORMULARIO
+    addIngredientForm.addEventListener('submit', function(e) {
       e.preventDefault();
-
-      // Validate name before submitting
+      
+      // Validar nombre antes de enviar
       const name = nameInput.value.trim();
-      const nameError = addIngredientForm.querySelector(".name-error-message");
-
-      if (nameError && nameError.style.display !== "none") {
-        showErrorDialog(
-          "No se puede añadir el ingrediente: el nombre ya existe."
-        );
+      const nameError = addIngredientForm.querySelector('.name-error-message');
+      
+      if (nameError && nameError.style.display !== 'none') {
+        showErrorDialog('No se puede añadir el ingrediente: el nombre ya existe.');
         return;
       }
-
+      
       const formData = new FormData(this);
-
+      
       const submitButton = this.querySelector('button[type="submit"]');
       const originalText = submitButton.innerHTML;
       submitButton.disabled = true;
-      submitButton.innerHTML =
-        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Añadiendo...';
-
+      submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Añadiendo...';
+      
       fetch(`/plates/${plateId}/ingredients`, {
-        method: "POST",
+        method: 'POST',
         body: formData,
         headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
+          'X-Requested-With': 'XMLHttpRequest'
+        }
       })
-        .then((response) => {
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalText;
+      .then(response => {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+        
+        if (!response.ok) {
+          return response.json().then(data => {
+            throw new Error(data.error || `Error ${response.status}: ${response.statusText}`);
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          // 1. Limpiar formulario
+          addIngredientForm.reset();
+          clearNameError();
 
-          if (!response.ok) {
-            return response.json().then((data) => {
-              throw new Error(
-                data.error || `Error ${response.status}: ${response.statusText}`
-              );
-            });
+          // 🔹 PASO 3: ocultar previsualización de imagen
+          const ingredientPreview = document.getElementById('ingredientImagePreview');
+          const ingredientPreviewImg = document.getElementById('ingredientImagePreviewImg');
+          if (ingredientPreview && ingredientPreviewImg) {
+            ingredientPreview.classList.add('d-none');
+            ingredientPreviewImg.src = '';
           }
-          return response.json();
-        })
-        .then((data) => {
-          if (data.success) {
-            // 1. Reset form
-            addIngredientForm.reset();
-            clearNameError();
 
-            // 🔹 STEP 3: hide image preview
-            const ingredientPreview = document.getElementById(
-              "ingredientImagePreview"
-            );
-            const ingredientPreviewImg = document.getElementById(
-              "ingredientImagePreviewImg"
-            );
-            if (ingredientPreview && ingredientPreviewImg) {
-              ingredientPreview.classList.add("d-none");
-              ingredientPreviewImg.src = "";
-            }
+          // 2. Añadir al DOM
+          addIngredientToDOM(data.ingredient, plateId);
 
-            // 2. Add to DOM
-            addIngredientToDOM(data.ingredient, plateId);
+          // 3. Mostrar éxito
+          showSuccessDialog(data.message || 'Ingrediente añadido correctamente');
 
-            // 3. Show success
-            showSuccessDialog(
-              data.message || "Ingrediente añadido correctamente"
-            );
-
-            // 4. Update message
-            updateNoIngredientsMessage();
-          } else {
-            showErrorDialog(data.error || "Error al añadir el ingrediente.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalText;
-          showErrorDialog(`Error: ${error.message}`);
-        });
+          // 4. Actualizar mensaje
+          updateNoIngredientsMessage();
+        } else {
+          showErrorDialog(data.error || 'Error al añadir el ingrediente.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+        showErrorDialog(`Error: ${error.message}`);
+      });
     });
   }
-
-  //
-  // 4. EDIT INGREDIENT (FULL SECTION)
-  //
-
-  // 4.1. Event listener for "Edit" buttons
-  document.addEventListener("click", function (e) {
-    if (
-      e.target.matches(".btn-edit-ingredient") ||
-      (e.target.tagName === "A" &&
-        e.target.href &&
-        e.target.href.includes("/ingredients/") &&
-        e.target.href.includes("/edit"))
-    ) {
+  
+  // ============================================
+  // 4. EDITAR INGREDIENTE (EN SECCIÓN COMPLETA)
+  // ============================================
+  
+  // 4.1. Event listener para botones "Editar"
+  document.addEventListener('click', function(e) {
+    if (e.target.matches('.btn-edit-ingredient') || 
+        (e.target.tagName === 'A' && e.target.href && e.target.href.includes('/ingredients/') && e.target.href.includes('/edit'))) {
+      
       e.preventDefault();
-
+      
       if (isEditing) {
-        showErrorDialog(
-          "Ya estás editando un ingrediente. Termina o cancela la edición actual."
-        );
+        showErrorDialog('Ya estás editando un ingrediente. Termina o cancela la edición actual.');
         return;
       }
-
+      
       let plateId, ingId;
-
-      if (e.target.classList.contains("btn-edit-ingredient")) {
-        plateId = e.target.getAttribute("data-plate-id");
-        ingId = e.target.getAttribute("data-ingredient-id");
+      
+      if (e.target.classList.contains('btn-edit-ingredient')) {
+        plateId = e.target.getAttribute('data-plate-id');
+        ingId = e.target.getAttribute('data-ingredient-id');
       } else {
         const url = e.target.href;
-        const match = url.match(
-          /\/plates\/([^\/]+)\/ingredients\/([^\/]+)\/edit/
-        );
+        const match = url.match(/\/plates\/([^\/]+)\/ingredients\/([^\/]+)\/edit/);
         if (match) {
           plateId = match[1];
           ingId = match[2];
         }
       }
-
+      
       if (!plateId || !ingId) return;
-
-      // Start editing in full section
+      
+      // Iniciar edición en sección completa
       startFullSectionEdit(plateId, ingId);
     }
   });
-
-  // 4.2. Start editing in full section
+  
+  // 4.2. Iniciar edición en sección completa
   function startFullSectionEdit(plateId, ingId) {
-    console.log("Iniciando edición en sección completa");
-
-    const ingredientsGrid = document.getElementById("ingredientsGrid");
-    const ingredientsSection = ingredientsGrid
-      ? ingredientsGrid.closest("section")
-      : null;
-
+    console.log('Iniciando edición en sección completa');
+    
+    const ingredientsGrid = document.getElementById('ingredientsGrid');
+    const ingredientsSection = ingredientsGrid ? ingredientsGrid.closest('section') : null;
+    
     if (!ingredientsGrid || !ingredientsSection) {
-      showErrorDialog("No se encontró la sección de ingredientes.");
+      showErrorDialog('No se encontró la sección de ingredientes.');
       return;
     }
-
-    // Save original state
+    
+    // Guardar estado original
     isEditing = true;
     currentEditIngredientId = ingId;
     currentEditPlateId = plateId;
     originalIngredientsHTML = ingredientsSection.innerHTML;
-
-    // Show loading indicator
+    
+    // Mostrar indicador de carga
     ingredientsSection.innerHTML = `
       <div class="text-center py-5">
         <div class="spinner-border text-zen" role="status" style="width: 3rem; height: 3rem;">
@@ -658,54 +602,46 @@ document.addEventListener("DOMContentLoaded", function () {
         <p class="mt-3 h5">Cargando ingrediente para editar...</p>
       </div>
     `;
-
-    // Fetch ingredient data
+    
+    // Obtener datos del ingrediente
     fetch(`/api/ingredients/${ingId}`, {
       headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        Accept: "application/json",
-      },
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json'
+      }
     })
-      .then((response) => {
-        if (!response.ok) {
-          // Handle 404 error if the ingredient no longer exists
-          if (response.status === 404) {
-            throw new Error(
-              "El ingrediente ya no existe. Puede que haya sido borrado en otra pestaña."
-            );
-          }
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
+    .then(response => {
+      if (!response.ok) {
+        // Manejar error 404 si el ingrediente ya no existe
+        if (response.status === 404) {
+          throw new Error('El ingrediente ya no existe. Puede que haya sido borrado en otra pestaña.');
         }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.success) {
-          showFullEditForm(ingredientsSection, data.ingredient, plateId, ingId);
-        } else {
-          throw new Error(
-            data.error || "Error al cargar datos del ingrediente"
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error cargando ingrediente:", error);
-        cancelFullSectionEdit();
-        showErrorDialog(`Error al cargar ingrediente: ${error.message}`);
-      });
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        showFullEditForm(ingredientsSection, data.ingredient, plateId, ingId);
+      } else {
+        throw new Error(data.error || 'Error al cargar datos del ingrediente');
+      }
+    })
+    .catch(error => {
+      console.error('Error cargando ingrediente:', error);
+      cancelFullSectionEdit();
+      showErrorDialog(`Error al cargar ingrediente: ${error.message}`);
+    });
   }
-
-  // 4.3. Show full edit form
+  
+  // 4.3. Mostrar formulario de edición completo
   function showFullEditForm(container, ingredientData, plateId, ingId) {
-    const isDefaultImage =
-      ingredientData.image === "/images/default-ingredient.jpg" ||
-      !ingredientData.image;
-
+    const isDefaultImage = ingredientData.image === '/images/default-ingredient.jpg' || !ingredientData.image;
+    
     container.innerHTML = `
       <div class="full-edit-container">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h4 class="text-zen mb-0">Editando Ingrediente: <em>${
-            ingredientData.name
-          }</em></h4>
+          <h4 class="text-zen mb-0">Editando Ingrediente: <em>${ingredientData.name}</em></h4>
         </div>
         
         <div class="row justify-content-center">
@@ -713,27 +649,25 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="plate-card-detail p-4">
               <form id="editIngredientForm" data-plate-id="${plateId}" data-ingredient-id="${ingId}">
                 
-                <!-- Current image -->
+                <!-- Imagen actual -->
                 <div class="mb-4">
                   <label class="form-label"><strong>Imagen actual:</strong></label>
 
                   <div class="text-center mb-3" id="currentIngredientImageWrapper">
-                    <img src="${
-                      ingredientData.image || "/images/default-ingredient.jpg"
-                    }"
+                    <img src="${ingredientData.image || '/images/default-ingredient.jpg'}"
                         alt="${ingredientData.name}"
                         style="max-width: 250px; height: auto;"
                         class="img-fluid rounded-zen shadow"
                         id="currentIngredientImage">
                   </div>
 
-                  <!-- hidden ALWAYS -->
+                  <!-- hidden SIEMPRE -->
                   <input type="hidden"
                         name="removeImage"
                         id="removeIngredientImageInput"
                         value="0">
 
-                  <!-- button ALWAYS -->
+                  <!-- botón SIEMPRE -->
                   <button type="button"
                           class="btn btn-create btn-sm mt-2"
                           id="removeCurrentIngredientImageBtn">
@@ -769,7 +703,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 <hr class="my-4">
                 
-                <!-- Name -->
+                <!-- Nombre -->
                 <div class="mb-4">
                   <label class="form-label"><strong>Nombre del ingrediente:</strong></label>
                   <input type="text" 
@@ -783,7 +717,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   <div class="name-error-message invalid-feedback" style="display: none;"></div>
                 </div>
                 
-                <!-- Description -->
+                <!-- Descripción -->
                 <div class="mb-4">
                   <label class="form-label"><strong>Descripción:</strong></label>
                   <textarea name="description" 
@@ -791,12 +725,10 @@ document.addEventListener("DOMContentLoaded", function () {
                             rows="4" 
                             required 
                             maxlength="200"
-                            placeholder="Describe el ingrediente...">${
-                              ingredientData.description
-                            }</textarea>
+                            placeholder="Describe el ingrediente...">${ingredientData.description}</textarea>
                 </div>
                 
-                <!-- Buttons (right aligned) -->
+                <!-- Botones (alineados a la derecha) -->
                 <div class="text-end mt-4">
                   <button type="button" class="btn btn-create me-2 btn-cancel-full-edit">
                     Cancelar
@@ -813,260 +745,239 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
     `;
-
+    
     setupFullEditFormEvents(plateId, ingId);
   }
-
-  // 4.4. Configure full form events
+  
+  // 4.4. Configurar eventos del formulario completo
   function setupFullEditFormEvents(plateId, ingId) {
-    const cancelButtons = document.querySelectorAll(".btn-cancel-full-edit");
-    const form = document.getElementById("editIngredientForm");
-    const nameInput = document.getElementById("editIngredientName");
-
-    // REAL-TIME VALIDATION FOR EDITING
+    const cancelButtons = document.querySelectorAll('.btn-cancel-full-edit');
+    const form = document.getElementById('editIngredientForm');
+    const nameInput = document.getElementById('editIngredientName');
+    
+    // VALIDACIÓN EN TIEMPO REAL PARA EDICIÓN
     if (nameInput) {
-      nameInput.addEventListener("input", function () {
+      nameInput.addEventListener('input', function() {
         clearTimeout(editNameCheckTimeout);
-
+        
         const name = this.value.trim();
         if (name.length < 2) {
           clearNameError(this);
           return;
         }
-
-        // Wait 500ms after stopping typing
+        
+        // Esperar 500ms después de dejar de escribir
         editNameCheckTimeout = setTimeout(() => {
           checkIngredientName(name, plateId, this, ingId);
         }, 500);
       });
-
-      // Also validate on blur
-      nameInput.addEventListener("blur", function () {
+      
+      // También validar al perder el foco
+      nameInput.addEventListener('blur', function() {
         const name = this.value.trim();
         if (name.length >= 2) {
           checkIngredientName(name, plateId, this, ingId);
         }
       });
     }
-
-    // Cancel events
-    cancelButtons.forEach((btn) => {
-      btn.addEventListener("click", function () {
+    
+    // Eventos para cancelar
+    cancelButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
         cancelFullSectionEdit();
       });
     });
-
-    // Form submit event
+    
+    // Evento para enviar formulario
     if (form) {
-      form.addEventListener("submit", function (e) {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
-
-        // Validate name before submitting
+        
+        // Validar nombre antes de enviar
         const name = nameInput.value.trim();
-        const nameError = form.querySelector(".name-error-message");
-
-        if (nameError && nameError.style.display !== "none") {
-          showErrorDialog(
-            "No se puede actualizar el ingrediente: el nombre ya existe."
-          );
+        const nameError = form.querySelector('.name-error-message');
+        
+        if (nameError && nameError.style.display !== 'none') {
+          showErrorDialog('No se puede actualizar el ingrediente: el nombre ya existe.');
           return;
         }
-
-        const submitBtn = document.getElementById("editSubmitButton");
-        const submitText = submitBtn.querySelector(".submit-text");
-        const spinner = submitBtn.querySelector(".spinner-border");
-
-        submitText.classList.add("d-none");
-        spinner.classList.remove("d-none");
+        
+        const submitBtn = document.getElementById('editSubmitButton');
+        const submitText = submitBtn.querySelector('.submit-text');
+        const spinner = submitBtn.querySelector('.spinner-border');
+        
+        submitText.classList.add('d-none');
+        spinner.classList.remove('d-none');
         submitBtn.disabled = true;
-
+        
         const formData = new FormData(this);
-        const plateId = this.getAttribute("data-plate-id");
-        const ingId = this.getAttribute("data-ingredient-id");
-
+        const plateId = this.getAttribute('data-plate-id');
+        const ingId = this.getAttribute('data-ingredient-id');
+        
         fetch(`/plates/${plateId}/ingredients/${ingId}`, {
-          method: "PUT",
+          method: 'PUT',
           body: formData,
           headers: {
-            "X-Requested-With": "XMLHttpRequest",
-          },
+            'X-Requested-With': 'XMLHttpRequest'
+          }
         })
-          .then((response) => {
-            submitText.classList.remove("d-none");
-            spinner.classList.add("d-none");
-            submitBtn.disabled = false;
-
-            // Handle 404 error if the ingredient no longer exists
-            if (response.status === 404) {
-              throw new Error(
-                "El ingrediente ya no existe. Puede que haya sido borrado en otra pestaña."
-              );
-            }
-
-            if (!response.ok) {
-              return response.json().then((data) => {
-                throw new Error(
-                  data.error ||
-                    `Error ${response.status}: ${response.statusText}`
-                );
-              });
-            }
-            return response.json();
-          })
-          .then((data) => {
-            if (data.success) {
-              // Show SUCCESS DIALOG
-              showSuccessDialog(
-                data.message || "Ingrediente actualizado correctamente"
-              );
-
-              // Restore section and update the specific ingredient
-              restoreIngredientsSection(data.ingredient);
-            } else {
-              throw new Error(
-                data.error || "Error al actualizar el ingrediente"
-              );
-            }
-          })
-          .catch((error) => {
-            console.error("Error actualizando ingrediente:", error);
-            showErrorDialog(`Error: ${error.message}`);
-          });
+        .then(response => {
+          submitText.classList.remove('d-none');
+          spinner.classList.add('d-none');
+          submitBtn.disabled = false;
+          
+          // Manejar error 404 si el ingrediente ya no existe
+          if (response.status === 404) {
+            throw new Error('El ingrediente ya no existe. Puede que haya sido borrado en otra pestaña.');
+          }
+          
+          if (!response.ok) {
+            return response.json().then(data => {
+              throw new Error(data.error || `Error ${response.status}: ${response.statusText}`);
+            });
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            // Mostrar CUADRO DE DIÁLOGO DE ÉXITO
+            showSuccessDialog(data.message || 'Ingrediente actualizado correctamente');
+            
+            // Restaurar sección y actualizar el ingrediente específico
+            restoreIngredientsSection(data.ingredient);
+          } else {
+            throw new Error(data.error || 'Error al actualizar el ingrediente');
+          }
+        })
+        .catch(error => {
+          console.error('Error actualizando ingrediente:', error);
+          showErrorDialog(`Error: ${error.message}`);
+        });
       });
     }
-
-    //
-    // REMOVE CURRENT IMAGE (EDITING)
-    //
-    const removeCurrentBtn = document.getElementById(
-      "removeCurrentIngredientImageBtn"
-    );
-    const removeImageInput = document.getElementById(
-      "removeIngredientImageInput"
-    );
-    const currentImage = document.getElementById("currentIngredientImage");
+    
+    // ======================================
+    // ELIMINAR IMAGEN ACTUAL (EDICIÓN)
+    // ======================================
+    const removeCurrentBtn = document.getElementById('removeCurrentIngredientImageBtn');
+    const removeImageInput = document.getElementById('removeIngredientImageInput');
+    const currentImage = document.getElementById('currentIngredientImage');
 
     if (removeCurrentBtn) {
-      removeCurrentBtn.addEventListener("click", () => {
-        // notify backend
-        removeImageInput.value = "1";
+      removeCurrentBtn.addEventListener('click', () => {
+        // avisar al backend
+        removeImageInput.value = '1';
 
-        // remove image from view
+        // quitar imagen de la vista
         if (currentImage) {
           currentImage.remove();
         }
 
-        // remove button
+        // quitar botón
         removeCurrentBtn.remove();
       });
     }
 
-    //
-    // IMAGE PREVIEW IN EDITING
-    //
-    const editImageInput = document.getElementById("editIngredientImageInput");
-    const editPreview = document.getElementById("editIngredientPreview");
-    const editPreviewImg = document.getElementById("editIngredientPreviewImg");
+    // ===============================
+    // PREVIEW IMAGEN EN EDICIÓN
+    // ===============================
+    const editImageInput = document.getElementById('editIngredientImageInput');
+    const editPreview = document.getElementById('editIngredientPreview');
+    const editPreviewImg = document.getElementById('editIngredientPreviewImg');
 
-    const removeNewImageBtn = document.getElementById(
-      "removeNewIngredientImageBtn"
-    );
+    const removeNewImageBtn = document.getElementById('removeNewIngredientImageBtn');
 
     if (removeNewImageBtn) {
-      removeNewImageBtn.addEventListener("click", () => {
-        // clear file input
-        editImageInput.value = "";
+      removeNewImageBtn.addEventListener('click', () => {
+        // limpiar input file
+        editImageInput.value = '';
 
-        // hide preview
-        editPreviewImg.src = "";
-        editPreview.classList.add("d-none");
+        // ocultar preview
+        editPreviewImg.src = '';
+        editPreview.classList.add('d-none');
       });
     }
 
     if (editImageInput) {
-      editImageInput.addEventListener("change", () => {
+      editImageInput.addEventListener('change', () => {
         const file = editImageInput.files[0];
         if (!file) return;
 
-        if (!file.type.startsWith("image/")) {
-          showErrorDialog("El archivo seleccionado no es una imagen válida.");
-          editImageInput.value = "";
+        if (!file.type.startsWith('image/')) {
+          showErrorDialog('El archivo seleccionado no es una imagen válida.');
+          editImageInput.value = '';
           return;
         }
 
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = e => {
           editPreviewImg.src = e.target.result;
-          editPreview.classList.remove("d-none");
+          editPreview.classList.remove('d-none');
         };
         reader.readAsDataURL(file);
       });
     }
   }
-
-  // 4.5. Cancel editing and restore section
+  
+  // 4.5. Cancelar edición y restaurar sección
   function cancelFullSectionEdit() {
-    const ingredientsSection = document.querySelector("section.mt-3");
+    const ingredientsSection = document.querySelector('section.mt-3');
     if (ingredientsSection && originalIngredientsHTML) {
       ingredientsSection.innerHTML = originalIngredientsHTML;
     }
-
-    // Reset state
+    
+    // Resetear estado
     resetEditState();
-
-    // Re-convert links to buttons (just in case)
+    
+    // Re-convertir enlaces a botones (por si acaso)
     setTimeout(() => {
       convertEditLinksToButtons();
     }, 100);
   }
-
-  // 4.6. Restore section after successful edit
+  
+  // 4.6. Restaurar sección después de edición exitosa
   function restoreIngredientsSection(updatedIngredient) {
-    const ingredientsSection = document.querySelector("section.mt-3");
-
+    const ingredientsSection = document.querySelector('section.mt-3');
+    
     if (ingredientsSection && originalIngredientsHTML) {
-      // Restore original HTML
+      // Restaurar HTML original
       ingredientsSection.innerHTML = originalIngredientsHTML;
-
-      // Update the specific ingredient in the DOM
+      
+      // Actualizar el ingrediente específico en el DOM
       updateSpecificIngredientInDOM(updatedIngredient);
     }
-
-    // Reset state
+    
+    // Resetear estado
     resetEditState();
-
-    // Re-convert links to buttons
+    
+    // Re-convertir enlaces a botones
     setTimeout(() => {
       convertEditLinksToButtons();
       updateNoIngredientsMessage();
     }, 100);
   }
-
-  //
-  // 5. INITIALIZATION FUNCTIONS
-  //
-
-  // 5.1. Set up existing delete buttons (compatibility)
+  
+  // ============================================
+  // 5. FUNCIONES DE INICIALIZACIÓN
+  // ============================================
+  
+  // 5.1. Configurar botones de borrar existentes (compatibilidad)
   function setupExistingDeleteButtons() {
-    const deleteForms = document.querySelectorAll(
-      'form[action*="/ingredients/"]'
-    );
-
-    deleteForms.forEach((form) => {
-      if (form.action.includes("_method=DELETE")) {
-        const match = form.action.match(
-          /\/plates\/([^\/]+)\/ingredients\/([^\/?]+)/
-        );
+    const deleteForms = document.querySelectorAll('form[action*="/ingredients/"]');
+    
+    deleteForms.forEach(form => {
+      if (form.action.includes('_method=DELETE')) {
+        const match = form.action.match(/\/plates\/([^\/]+)\/ingredients\/([^\/?]+)/);
         if (match) {
           const plateId = match[1];
           const ingId = match[2];
-
+          
           const submitButton = form.querySelector('button[type="submit"]');
           if (submitButton) {
-            submitButton.classList.add("btn-delete-ingredient");
-            submitButton.setAttribute("data-plate-id", plateId);
-            submitButton.setAttribute("data-ingredient-id", ingId);
-
+            submitButton.classList.add('btn-delete-ingredient');
+            submitButton.setAttribute('data-plate-id', plateId);
+            submitButton.setAttribute('data-ingredient-id', ingId);
+            
             const buttonContainer = form.parentElement;
             const newButton = submitButton.cloneNode(true);
             form.remove();
@@ -1076,81 +987,75 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
-  // 5.2. Convert traditional links to AJAX buttons
+  
+  // 5.2. Convertir enlaces tradicionales a botones AJAX
   function convertEditLinksToButtons() {
-    const editLinks = document.querySelectorAll(
-      'a[href*="/ingredients/"][href*="/edit"]'
-    );
-
-    editLinks.forEach((link) => {
+    const editLinks = document.querySelectorAll('a[href*="/ingredients/"][href*="/edit"]');
+    
+    editLinks.forEach(link => {
       const url = link.href;
-      const match = url.match(
-        /\/plates\/([^\/]+)\/ingredients\/([^\/]+)\/edit/
-      );
-
+      const match = url.match(/\/plates\/([^\/]+)\/ingredients\/([^\/]+)\/edit/);
+      
       if (match) {
         const plateId = match[1];
         const ingId = match[2];
-
-        const button = document.createElement("button");
-        button.className = "btn btn-create btn-sm me-1 btn-edit-ingredient";
-        button.setAttribute("data-plate-id", plateId);
-        button.setAttribute("data-ingredient-id", ingId);
-        button.textContent = "Editar";
-
+        
+        const button = document.createElement('button');
+        button.className = 'btn btn-create btn-sm me-1 btn-edit-ingredient';
+        button.setAttribute('data-plate-id', plateId);
+        button.setAttribute('data-ingredient-id', ingId);
+        button.textContent = 'Editar';
+        
         link.parentNode.replaceChild(button, link);
       }
     });
   }
-
-  //
-  // 6. INITIALIZE EVERYTHING
-  //
-  console.log("Inicializando ingredient.js");
+  
+  // ============================================
+  // 6. INICIALIZAR TODO
+  // ============================================
+  console.log('Inicializando ingredient.js');
   setupExistingDeleteButtons();
   convertEditLinksToButtons();
   updateNoIngredientsMessage();
-  console.log("Inicialización completada");
+  console.log('Inicialización completada');
 
-  //
-  // 7. IMAGE PREVIEW (ADD INGREDIENT)
-  //
+  // ============================================
+  // 7. PREVISUALIZACIÓN DE IMAGEN (AÑADIR INGREDIENTE)
+  // ============================================
 
-  const ingredientImageInput = document.getElementById("ingredientImage");
-  const ingredientPreview = document.getElementById("ingredientImagePreview");
-  const ingredientPreviewImg = document.getElementById(
-    "ingredientImagePreviewImg"
-  );
-  const removeIngredientImageBtn = document.getElementById(
-    "removeIngredientImageBtn"
-  );
+  const ingredientImageInput = document.getElementById('ingredientImage');
+  const ingredientPreview = document.getElementById('ingredientImagePreview');
+  const ingredientPreviewImg = document.getElementById('ingredientImagePreviewImg');
+  const removeIngredientImageBtn = document.getElementById('removeIngredientImageBtn');
 
   if (ingredientImageInput && ingredientPreview && ingredientPreviewImg) {
-    ingredientImageInput.addEventListener("change", () => {
+
+    ingredientImageInput.addEventListener('change', () => {
       const file = ingredientImageInput.files[0];
       if (!file) return;
 
-      if (!file.type.startsWith("image/")) {
-        showErrorDialog("El archivo seleccionado no es una imagen válida.");
-        ingredientImageInput.value = "";
+      if (!file.type.startsWith('image/')) {
+        showErrorDialog('El archivo seleccionado no es una imagen válida.');
+        ingredientImageInput.value = '';
         return;
       }
 
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = e => {
         ingredientPreviewImg.src = e.target.result;
-        ingredientPreview.classList.remove("d-none");
+        ingredientPreview.classList.remove('d-none');
       };
       reader.readAsDataURL(file);
     });
 
     if (removeIngredientImageBtn) {
-      removeIngredientImageBtn.addEventListener("click", () => {
-        ingredientImageInput.value = "";
-        ingredientPreviewImg.src = "";
-        ingredientPreview.classList.add("d-none");
+      removeIngredientImageBtn.addEventListener('click', () => {
+        ingredientImageInput.value = '';
+        ingredientPreviewImg.src = '';
+        ingredientPreview.classList.add('d-none');
       });
     }
   }
 });
+
