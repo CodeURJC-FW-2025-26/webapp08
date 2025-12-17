@@ -532,3 +532,7 @@ public/js/detail.js
 controllers/platesController.js
  https://github.com/CodeURJC-FW-2025-26/webapp08/blob/main/Pr%C3%A1ctica%203/controllers/platesController.js
 ingredientmanagement.js
+
+
+### Vídeo final:
+https://youtu.be/b45zIE9q4xM
